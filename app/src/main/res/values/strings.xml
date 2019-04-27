@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Emma-Tel</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="unexpected_api_error">unexpected_api_error</string>
+    <string name="internet_error">problem on internet</string>
+    <string name="update">Update</string>
+    <string name="local">en</string>
+    <string name="Home">Home</string>
+    <string name="Mobiles">Mobiles</string>
+    <string name="Accessories">Accessories</string>
+    <string name="Offers">Offers</string>
+    <string name="Branches">Branches</string>
+    <string name="Notifications">Notifications</string>
+    <string name="Pages">Pages</string>
+    <string name="Translate">Translate to Arabic</string>
+    <string name="signup_signin">sign in</string>
+    <string name="Contact_us">Contact Us</string>
+    <string name="about_us">About Us</string>
+    <string name="phone">+963</string>
+    <string name="phone_number">Phone</string>
+    <string name="create_account"><u>Create Account</u></string>
+</resources>

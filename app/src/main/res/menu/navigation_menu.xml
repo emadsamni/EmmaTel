@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/Home"
+        android:title="@string/Home">
+
+    </item>
+
+
+        <group android:id="@+id/grp3" android:checkableBehavior="single">
+        <item android:id="@+id/Mobiles"
+            android:title="@string/Mobiles">
+
+        </item>
+        <item android:id="@+id/Accessories"
+            android:title="@string/Accessories">
+
+        </item>
+        </group>
+
+
+    <group android:id="@+id/grp2" android:checkableBehavior="single" >
+    <item android:id="@+id/Offers"
+        android:title="@string/Offers">
+
+    </item>
+
+    <item android:id="@+id/Branches"
+        android:title="@string/Branches">
+
+    </item>
+
+    <item android:id="@+id/Notifications"
+        android:title="@string/Notifications">
+
+    </item>
+
+    <item android:id="@+id/Pages"
+        android:title="@string/Pages">
+
+    </item>
+        <item android:id="@+id/Contact"
+            android:title="@string/Contact_us">
+        </item>
+
+        <item android:id="@+id/About"
+            android:title="@string/about_us">
+        </item>
+    </group>
+<group>
+    <item android:id="@+id/translate"
+        android:title="@string/Translate">
+    </item>
+</group>
+
+
+
+</menu>

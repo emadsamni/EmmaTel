@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Emma-Tel</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="unexpected_api_error">خطا غير متوفع</string>
+    <string name="internet_error">مشكلة في الانترنت</string>
+    <string name="update">تحديث</string>
+    <string name="local">ar</string>
+    <string name="Home">الرئيسية </string>
+    <string name="Mobiles">موبايلات</string>
+    <string name="Accessories">اكسسوارات</string>
+    <string name="Offers">العروض</string>
+    <string name="Branches">الفروع</string>
+    <string name="Notifications">الاشعارات</string>
+    <string name="Pages">الصفحات</string>
+    <string name="Translate">ترجم الى اللغة الانكليزية</string>
+    <string name="signup_signin">تسجيل الدخول </string>
+    <string name="Contact_us">تواصل معنا</string>
+    <string name="about_us">من نحن</string>
+</resources>
