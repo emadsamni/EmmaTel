@@ -1,5 +1,6 @@
 package com.example.emma_tel.activites;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -21,16 +22,20 @@ import com.example.emma_tel.R;
 import com.example.emma_tel.fragments.FinishFragment;
 import com.example.emma_tel.fragments.RegisterFragment;
 import com.example.emma_tel.fragments.VerificationFragment;
+import com.example.emma_tel.viewmodels.LoginViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
-    ImageButton mNextBtn;
-    Button mSkipBtn, mFinishBtn;
+    ImageButton mNextBtn ,mSkipBtn;
+    Button  mFinishBtn;
     ImageView zero, one, two;
     ImageView[] indicators;
     int lastLeftValue = 0;
     CoordinatorLayout mCoordinator;
     static final String TAG = "PagerActivity";
     int page = 0;   //  to track page position
+    String phone="";
+
+    StepperListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
             mNextBtn.setImageDrawable(
                     tintMyDrawable(ContextCompat.getDrawable(this, R.drawable.ic_chevron_right_24dp), Color.WHITE)
             );
-        mSkipBtn = (Button) findViewById(R.id.intro_btn_skip);
+        mSkipBtn = (ImageButton) findViewById(R.id.intro_btn_prev);
         mFinishBtn = (Button) findViewById(R.id.intro_btn_finish);
         zero = (ImageView) findViewById(R.id.intro_indicator_0);
         one = (ImageView) findViewById(R.id.intro_indicator_1);
@@ -56,33 +61,14 @@ public class RegisterActivity extends AppCompatActivity {
         loadFragment(fragment);
         updateIndicators(page);
 
+
     }
     private  void assignAction()
     {
         mNextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                page += 1;
-                updateIndicators(page);
-                switch (page)
-                {
-                    case 0:
-                        RegisterFragment fragment1 = new RegisterFragment();
-                        loadFragment(fragment1);
-                        updateIndicators(page);
-                        return;
-                    case 1:
-                        VerificationFragment fragment2 = new VerificationFragment();
-                        loadFragment(fragment2);
-                        updateIndicators(page);
-                        return;
-                    case 2:
-                        FinishFragment fragment3 = new FinishFragment();
-                        loadFragment(fragment3);
-                        updateIndicators(page);
-                        return;
-
-                }
+                listener.onNextClicked();
             }
         });
 
@@ -121,6 +107,33 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void  next()
+    {
+
+        page += 1;
+        updateIndicators(page);
+        switch (page)
+        {
+            case 0:
+                RegisterFragment fragment1 = new RegisterFragment();
+                loadFragment(fragment1);
+                updateIndicators(page);
+                return;
+            case 1:
+                VerificationFragment fragment2 = new VerificationFragment();
+                loadFragment(fragment2);
+                updateIndicators(page);
+                return;
+            case 2:
+                FinishFragment fragment3 = new FinishFragment();
+                loadFragment(fragment3);
+                updateIndicators(page);
+                return;
+
+        }
+
+    }
     public static Drawable tintMyDrawable(Drawable drawable, int color) {
         drawable = DrawableCompat.wrap(drawable);
         DrawableCompat.setTint(drawable, color);
@@ -139,6 +152,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private  boolean loadFragment(Fragment fragment)
     {
+        listener = (StepperListener) fragment;
         if (fragment  != null )
         {
             getSupportFragmentManager()
@@ -148,5 +162,16 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    public void setPhone(String phone) {
+
+        this.phone =phone;
+    }
+
+    public String getPhone(String phone) {
+
+       return this.phone;
+    }
+
 
 }

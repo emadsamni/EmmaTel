@@ -21,4 +21,5 @@
     <string name="phone">+963</string>
     <string name="phone_number">Phone</string>
     <string name="create_account"><u>Create Account</u></string>
+    <string name="password">Password</string>
 </resources>

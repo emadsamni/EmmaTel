@@ -10,6 +10,7 @@ import com.example.emma_tel.helprs.MatrialEditText;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import es.dmoral.toasty.Toasty;
 
 
 public class Utils {
@@ -41,6 +42,12 @@ public class Utils {
             return true;
 
         return false;
+    }
+    public void problemWithConnection(Context activity){
+        ProgressDialog.getInstance().cancel();
+        Toasty.custom(activity,R.string.internet_error,null,
+                activity.getResources().getColor(R.color.colorPrimary),Constants.TOAST_TIME,false,true).show();
+
     }
 
 

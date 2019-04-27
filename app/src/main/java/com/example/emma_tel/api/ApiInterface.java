@@ -13,10 +13,12 @@ import com.example.emma_tel.models.Mobile;
 import com.example.emma_tel.models.Notification;
 import com.example.emma_tel.models.Offer;
 import com.example.emma_tel.models.Page;
+import com.example.emma_tel.models.User;
 
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
@@ -47,6 +49,9 @@ public interface ApiInterface {
 
     @GET("getAccessories")
     Call<ApiResponse<List<Accessory>>> getAccessories(@Query("key") String key);
+
+    @POST("addUser")
+    Call<ApiResponse<User>> addUser(@Query("key") String key ,@Query("phone") String phone ,@Query("password") String password  );
 
 
 
