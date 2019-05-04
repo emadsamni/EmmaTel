@@ -57,11 +57,11 @@ public class BranchAdapter   extends RecyclerView.Adapter<BranchAdapter.MyViewHo
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            branchPhone= (TextView) itemView.findViewById(R.id.text_view_branch_phone);
-            branchfixedPhone= (TextView) itemView.findViewById(R.id.text_view_branch_fixed_phone);
-            branchwhatsapp= (TextView) itemView.findViewById(R.id.text_view_branch_whatsapp);
-            branchtitle= (TextView) itemView.findViewById(R.id.text_view_branch_title);
-            branchaddress= (TextView) itemView.findViewById(R.id.text_view_branch_address);
+          //  branchPhone= (TextView) itemView.findViewById(R.id.text_view_branch_phone);
+          //  branchfixedPhone= (TextView) itemView.findViewById(R.id.text_view_branch_fixed_phone);
+         //   branchwhatsapp= (TextView) itemView.findViewById(R.id.text_view_branch_whatsapp);
+         //   branchtitle= (TextView) itemView.findViewById(R.id.text_view_branch_title);
+         //   branchaddress= (TextView) itemView.findViewById(R.id.text_view_branch_address);
 
 
         }

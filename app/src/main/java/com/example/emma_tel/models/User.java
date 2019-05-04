@@ -18,9 +18,26 @@ public class User implements Serializable {
     private
     String phone;
 
+    public String getVerification_code() {
+        return verification_code;
+    }
+
+    @SerializedName("verification_code")
+    private
+    String verification_code;
+
     @SerializedName("device_name")
     private
     String device_name;
+
+    public String getToken() {
+        return token;
+    }
+
+    @SerializedName("token")
+    private
+    String token;
+
 
     public Integer getId() {
         return id;

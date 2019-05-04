@@ -8,8 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.emma_tel.R;
+import com.example.emma_tel.activites.StepperListener;
 
-public class FinishFragment  extends Fragment {
+public class FinishFragment  extends Fragment implements StepperListener {
     public FinishFragment() {
     }
 
@@ -23,6 +24,16 @@ public class FinishFragment  extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=  inflater.inflate(R.layout.fragment_finish, container,false);
         return  view;
+
+    }
+
+    @Override
+    public void onNextClicked() {
+
+    }
+
+    @Override
+    public void onBackClicked() {
 
     }
 }

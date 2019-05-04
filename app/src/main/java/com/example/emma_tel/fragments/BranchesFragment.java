@@ -37,7 +37,7 @@ public class BranchesFragment  extends Fragment {
     }
     private void assignUIReference(View view){
         dataViewModels = ViewModelProviders.of(getActivity()).get(DataViewModels.class);
-        myRecyclerView =(RecyclerView) view.findViewById(R.id.recycler_branch);
+       // myRecyclerView =(RecyclerView) view.findViewById(R.id.recycler_branch);
         dataViewModels.getBranchList(getActivity()).observe(getActivity(), new Observer<List<Branch>>() {
             @Override
             public void onChanged(@Nullable List<Branch> branches) {

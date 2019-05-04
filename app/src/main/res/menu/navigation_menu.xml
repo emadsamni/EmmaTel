@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+  <group android:id="@+id/grp7" android:checkableBehavior="single">
     <item android:id="@+id/Home"
-        android:title="@string/Home">
+        android:title="@string/Home"
+        android:icon="@drawable/home"
+        >
 
     </item>
+  </group>
 
 
         <group android:id="@+id/grp3" android:checkableBehavior="single">
         <item android:id="@+id/Mobiles"
-            android:title="@string/Mobiles">
+            android:title="@string/Mobiles"
+            android:icon="@drawable/mobile">
 
         </item>
         <item android:id="@+id/Accessories"
-            android:title="@string/Accessories">
+            android:title="@string/Accessories"
+            android:icon="@drawable/accessory">
 
         </item>
         </group>
@@ -21,35 +26,35 @@
 
     <group android:id="@+id/grp2" android:checkableBehavior="single" >
     <item android:id="@+id/Offers"
-        android:title="@string/Offers">
+        android:title="@string/Offers"
+        android:icon="@drawable/offer">
 
     </item>
 
     <item android:id="@+id/Branches"
-        android:title="@string/Branches">
+        android:title="@string/Branches"
+        android:icon="@drawable/branch">
 
     </item>
 
-    <item android:id="@+id/Notifications"
-        android:title="@string/Notifications">
 
-    </item>
-
-    <item android:id="@+id/Pages"
-        android:title="@string/Pages">
-
-    </item>
         <item android:id="@+id/Contact"
-            android:title="@string/Contact_us">
+            android:title="@string/Contact_us"
+            android:icon="@drawable/contact">
         </item>
 
         <item android:id="@+id/About"
-            android:title="@string/about_us">
+            android:title="@string/about_us"
+            android:icon="@drawable/aboutus">
         </item>
     </group>
 <group>
     <item android:id="@+id/translate"
-        android:title="@string/Translate">
+        android:title="@string/Translate"
+        android:icon="@drawable/lang">
+    </item>
+    <item android:id="@+id/logout"
+        android:title="@string/LogOut">
     </item>
 </group>
 

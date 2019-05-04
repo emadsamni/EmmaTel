@@ -3,6 +3,7 @@ package com.example.emma_tel.utils;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.emma_tel.R;
@@ -37,6 +38,12 @@ public class Utils {
         }
     }
 
+    public boolean notEmpty(EditText etText) {
+        if (etText.getText().toString().trim().length() > 0)
+            return true;
+
+        return false;
+    }
     public boolean notEmpty(MaterialEditText etText) {
         if (etText.getText().toString().trim().length() > 0)
             return true;

@@ -58,8 +58,8 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.MyViewHolder
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
                 mobileImage = (ImageView) itemView.findViewById(R.id.image_view_offer_image);
-                mobileTitle= (TextView) itemView.findViewById(R.id.text_view_offer_title);
-                mobileContent= (TextView) itemView.findViewById(R.id.text_view_offer_content);
+                mobileTitle= (TextView) itemView.findViewById(R.id.text_offer_title);
+                mobileContent= (TextView) itemView.findViewById(R.id.text_offer_content);
 
 
             }

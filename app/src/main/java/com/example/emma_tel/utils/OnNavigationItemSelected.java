@@ -1,6 +1,8 @@
 package com.example.emma_tel.utils;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -8,15 +10,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
 import com.example.emma_tel.R;
+import com.example.emma_tel.activites.ContactActivity;
+import com.example.emma_tel.activites.LoginActivity;
 import com.example.emma_tel.activites.MainActivity;
+import com.example.emma_tel.fragments.AboutUsFragment;
 import com.example.emma_tel.fragments.AccessoriesFragment;
 import com.example.emma_tel.fragments.BranchesFragment;
+import com.example.emma_tel.fragments.MapFragment;
 import com.example.emma_tel.fragments.MobilesFragment;
 import com.example.emma_tel.fragments.HomeFragment;
 import com.example.emma_tel.fragments.NotificationFragment;
 import com.example.emma_tel.fragments.OffersFragment;
 import com.example.emma_tel.fragments.PagesFragments;
 import com.example.emma_tel.helprs.CustomerUtils;
+import com.facebook.login.LoginManager;
 
 
 public class OnNavigationItemSelected implements NavigationView.OnNavigationItemSelectedListener {
@@ -72,25 +79,11 @@ public class OnNavigationItemSelected implements NavigationView.OnNavigationItem
                         .replace(R.id.fargment_container,fragment ).commitNowAllowingStateLoss();
                 drawerLayout.closeDrawers();
                 return true;
-            case R.id.Notifications:
-                fragment =  new NotificationFragment();
-                ((MainActivity)context).getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fargment_container,fragment ).commitNowAllowingStateLoss();
-                drawerLayout.closeDrawers();
-                return true;
 
-            case R.id.Pages:
-                fragment =  new PagesFragments();
-                ((MainActivity)context).getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fargment_container,fragment ).commitNowAllowingStateLoss();
-                drawerLayout.closeDrawers();
-                return true;
 
 
             case R.id.Branches:
-                fragment =  new BranchesFragment();
+                fragment =  new MapFragment();
                 ((MainActivity)context).getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fargment_container,fragment ).commitNowAllowingStateLoss();
@@ -107,8 +100,35 @@ public class OnNavigationItemSelected implements NavigationView.OnNavigationItem
                         customerUtils.addString(Constants.PREF_LANG,"ar");
                     }
 
-                    context.recreate();
+                    Intent i = context.getBaseContext().getPackageManager().
+                            getLaunchIntentForPackage(context.getBaseContext().getPackageName());
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(i);
                 }
+                return true;
+            case R.id.About:
+                fragment =  new AboutUsFragment();
+                ((MainActivity)context).getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fargment_container,fragment ).commitNowAllowingStateLoss();
+                drawerLayout.closeDrawers();
+
+                return true;
+            case R.id.Contact:
+                if (customerUtils.isFound(Constants.PREF_TOKEN))
+                    context. startActivity(new Intent(context, ContactActivity.class));
+                else
+                    context. startActivity(new Intent(context, LoginActivity.class));
+
+                drawerLayout.closeDrawers();
+
+                return true;
+            case R.id.logout:
+                     customerUtils.clear();
+                     context.recreate();
+                     LoginManager.getInstance().logOut();
+                     drawerLayout.closeDrawers();
                 return true;
                 }
         return false;

@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,13 +19,15 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.emma_tel.R;
 import com.example.emma_tel.activites.MainActivity;
 import com.example.emma_tel.adapters.AccessoryAdapter;
+import com.example.emma_tel.interfaces.OnItemRecyclerClicked;
 import com.example.emma_tel.models.Accessory;
 import com.example.emma_tel.models.MainSlider;
+import com.example.emma_tel.models.Mobile;
 import com.example.emma_tel.viewmodels.DataViewModels;
 
 import java.util.List;
 
-public class AccessoriesFragment extends Fragment {
+public class AccessoriesFragment extends Fragment implements OnItemRecyclerClicked {
 
     DataViewModels dataViewModels;
     private RecyclerView myRecyclerView;
@@ -46,14 +49,26 @@ public class AccessoriesFragment extends Fragment {
         dataViewModels.getAccessoryList(getActivity()).observe(getActivity(), new Observer<List<Accessory>>() {
             @Override
             public void onChanged(@Nullable List<Accessory> accessories) {
-                mAdapter =new AccessoryAdapter(accessories,getActivity());
+                mAdapter =new AccessoryAdapter(accessories,getActivity() ,AccessoriesFragment.this);
                 myRecyclerView.setAdapter(mAdapter);
                 LinearLayoutManager layoutManager =new LinearLayoutManager( getActivity());
-                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                layoutManager =new GridLayoutManager(getActivity(),2);
                 myRecyclerView.setLayoutManager(layoutManager);
             }
         });
     }
 
 
+    @Override
+    public void onClickedRecyclerItem(Mobile mobile) {
+
+    }
+
+    @Override
+    public void onClickedRecyclerItem(Accessory accessory) {
+        AccessoryViewDialog accessoryViewDialog = new AccessoryViewDialog();
+        accessoryViewDialog.setAccessory(accessory);
+        accessoryViewDialog.show(getActivity().getSupportFragmentManager(), "View JobDialog");
+
+    }
 }

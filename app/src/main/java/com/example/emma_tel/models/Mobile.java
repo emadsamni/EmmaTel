@@ -67,6 +67,13 @@ public class Mobile implements Serializable {
     private
     Company company;
 
+    @SerializedName("screen")
+    private
+    String screen;
+
+    public String  getScreen() {
+        return screen;
+    }
 
     public Integer getId() {
         return id;

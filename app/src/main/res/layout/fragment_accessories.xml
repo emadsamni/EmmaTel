@@ -4,18 +4,78 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_accessory"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/ms_white_tarns">
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:background="@color/ms_white_tarns">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:src="@drawable/emma_tel"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                >
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="11dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="@color/colorPrimary">
 
+                </View>
+                <View
+                    android:layout_width="7dp"
+                    android:layout_height="11dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="@color/colorAccent">
+                </View>
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="11dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="@color/colorAccent">
+                </View>
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="11dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="@color/colorAccent">
+                </View>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="11dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="@color/colorAccent">
+                </View>
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Accessories"
+                    android:paddingStart="10dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorAccent"
+                    />
+
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_accessory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/ms_white_tarns"
+                />
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
 </android.support.constraint.ConstraintLayout>

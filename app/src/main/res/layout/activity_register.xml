@@ -7,9 +7,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activites.RegisterActivity"
-    >
+    android:background="@color/colorAccent"
 
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:gravity="center">
+   <TextView
+       android:id="@+id/title"
+       android:layout_width="wrap_content"
+       android:text=""
+       android:textSize="14pt"
+       android:textColor="@color/ms_white"
+       android:layout_height="wrap_content" />
+    </LinearLayout>
     <FrameLayout
+        android:layout_marginTop="140dp"
+        android:background="@drawable/border_background_signup"
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorAccent"
         android:paddingEnd="@dimen/activity_horizontal_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"

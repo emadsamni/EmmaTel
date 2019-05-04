@@ -15,8 +15,48 @@
     <string name="Branches">الفروع</string>
     <string name="Notifications">الاشعارات</string>
     <string name="Pages">الصفحات</string>
-    <string name="Translate">ترجم الى اللغة الانكليزية</string>
+    <string name="Translate">لغة الانكليزية</string>
     <string name="signup_signin">تسجيل الدخول </string>
     <string name="Contact_us">تواصل معنا</string>
     <string name="about_us">من نحن</string>
+    <string name="phone">+963</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="create_account"><u>انشاء حساب</u></string>
+    <string name="password">كلمة السر</string>
+    <string name="confirm_password">تأكيد كلمة السر</string>
+    <string name="register">تسجيل</string>
+    <string name="phoneInvalidMessage">رقم الهاتف ليس صحيحا</string>
+    <string name="confirmPasswordEmpty">الرجاء ادخال تأكيد كلمة المرور</string>
+    <string name="passwordEmpty">الرجاء ادخال كلمة المرور </string>
+    <string name="confirmNewPasswordError">كلمتا السر غير متطابقتان</string>
+    <string name="phoneEmpty">الرجاء ادخال رقم الهاتف</string>
+    <string name="code_error">الكود خاطئ</string>
+    <string name="text_last_step">تم اكتمال التسجيل </string>
+    <string name="LogOut">تسجيل الخروج</string>
+    <string name="login_failed">رقم الهاتف أو كلمة السر خاطئة </string>
+
+    <string name="user_exsist">الحساب موجود</string>
+    <string name="name">الاسم </string>
+    <string name="email">الايميل</string>
+    <string name="edit_completed">تم التعديل</string>
+    <string name="login">تسجيل دخول</string>
+    <string name="edit_profile">تعديل البروفايل</string>
+    <string name="edit">تعديل</string>
+    <string name="submit">إرسال</string>
+    <string name="description">التفاصيل</string>
+    <string name="price">السعر :</string>
+
+    <string name="profile">بروفايل</string>
+    <string name="welcome">مرحبا</string>
+    <string name="deails">التفاصيل</string>
+    <string name="signup_desc">Enter the flollowing details to sinup up</string>
+    <string name="signin">تسجيل الدخول</string>
+    <string name="address">العنوان :</string>
+    <string name="phonemap">الهاتف :</string>
+    <string name="fixed_phone">الأرضي :</string>
+    <string name="whatsapp">واتس اب :</string>
+    <string name="about_us_content">تقدم شركة ايما تيل خدمة الضمان لجميع منتجاتها المختلفة وفيما يلي وصف للخدمات المقدمة للأجهزة الخلوية \\r\\nتحمل منتجات سامسونغ ضمانا كاملا للمدة المحددة</string>
+
+    <string name="message_sended">تم الارسال</string>
+    <string name="descEmpty">please fill your message</string>
 </resources>

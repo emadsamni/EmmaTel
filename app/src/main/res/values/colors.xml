@@ -4,10 +4,10 @@
     <color name="colorPrimaryDark">#AF7203</color>
     <color name="colorAccent">#0470b9</color>
     <color name="ms_white">#FFFFFF</color>
-    <color name="ms_white_tarns">#57FFFFFF</color>
+    <color name="ms_white_tarns">#ececee</color>
     <color name="navigationBarColorAttempted">#777</color>
     <color name="navigationBarColorSkipped">#063e8b</color>
-    <color name="violet">#673ab7</color>
+    <color name="violet">#673ab7</color>ececee
     <color name="sky_blue">#0f96fe</color>
     <color name="sky_blue_pressed">#245e61</color>
     <color name="black">#000</color>
@@ -60,4 +60,5 @@
     <color name="cyan_50">#E0F7FA</color>
     <color name="amber_50">#FFF8E1</color>
     <color name="purple_50">#F3E5F5</color>
+    <color name="design_default_color_primary_dark">#8C848D</color>
 </resources>

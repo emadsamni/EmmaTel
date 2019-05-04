@@ -5,7 +5,8 @@ public class Constants {
     public static final String API_KEY = "jlkdjlkjXOOOOZOOOOOKKOKOKMOMPPPOXX@dSDssd2@SE";
     public static final String APP_SHARED_PREFERENCE_KEY = "pref";
     public static final String PREF_TOKEN = "token";
-    public static final String PREF_PHONE ="phone";
+    public static final String PREF_Name ="name";
+    public static final String PREF_Phone ="phone";
     public static final String PREF_LANG ="lang";
     public static final String PREF_APP_KEY ="encrypt_key";
     public static final String PREF_APP_SALT ="encrypt_salt";
