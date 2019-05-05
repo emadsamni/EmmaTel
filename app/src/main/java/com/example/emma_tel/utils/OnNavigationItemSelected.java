@@ -105,6 +105,7 @@ public class OnNavigationItemSelected implements NavigationView.OnNavigationItem
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
+                    context.finish();
                 }
                 return true;
             case R.id.About:
@@ -126,9 +127,9 @@ public class OnNavigationItemSelected implements NavigationView.OnNavigationItem
                 return true;
             case R.id.logout:
                      customerUtils.clear();
-                     context.recreate();
+                      drawerLayout.closeDrawers();
                      LoginManager.getInstance().logOut();
-                     drawerLayout.closeDrawers();
+                     ((MainActivity)context). navigationView.getMenu().getItem( navigationView.getMenu().size()-1).setVisible(false);
                 return true;
                 }
         return false;

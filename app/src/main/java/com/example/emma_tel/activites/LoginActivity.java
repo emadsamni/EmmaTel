@@ -1,6 +1,7 @@
 package com.example.emma_tel.activites;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import com.rengwuxian.materialedittext.validation.RegexpValidator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class LoginActivity extends AppCompatActivity {
     Button createButton , loginButton;
@@ -149,5 +152,9 @@ public class LoginActivity extends AppCompatActivity {
     private void login(String phone ,  String password ){
 
         loginViewModel.login(LoginActivity.this,phone,password );
+    }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 }

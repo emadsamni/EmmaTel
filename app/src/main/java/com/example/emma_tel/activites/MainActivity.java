@@ -1,5 +1,6 @@
 package com.example.emma_tel.activites;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -40,6 +41,8 @@ import com.example.emma_tel.utils.OnNavigationItemSelected;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
+
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class MainActivity extends AppCompatActivity implements BaseSliderView.OnSliderClickListener , ViewPagerEx.OnPageChangeListener , BottomNavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
@@ -210,6 +213,10 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
             return true;
         }
         return false;
+    }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
 

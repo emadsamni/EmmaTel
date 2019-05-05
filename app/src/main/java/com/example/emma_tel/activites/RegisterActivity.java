@@ -1,6 +1,7 @@
 package com.example.emma_tel.activites;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -26,6 +27,8 @@ import com.example.emma_tel.fragments.VerificationFragment;
 import com.example.emma_tel.helprs.CustomerUtils;
 import com.example.emma_tel.utils.Constants;
 import com.example.emma_tel.viewmodels.LoginViewModel;
+
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class RegisterActivity extends AppCompatActivity {
     ImageButton mNextBtn ,mSkipBtn;
@@ -189,6 +192,9 @@ public class RegisterActivity extends AppCompatActivity {
 
        return this.phone;
     }
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
 
 }

@@ -99,7 +99,7 @@
     <LinearLayout
         android:clickable="true"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_weight="1"
         android:layout_margin="5dp"
         android:orientation="horizontal"
@@ -139,7 +139,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_weight="1"
         android:layout_margin="5dp"
         android:orientation="horizontal"
@@ -192,7 +192,7 @@
     <LinearLayout
         android:clickable="true"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_weight="1"
         android:layout_margin="5dp"
         android:orientation="horizontal"
@@ -232,7 +232,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_weight="1"
         android:layout_margin="5dp"
         android:orientation="horizontal"
@@ -284,7 +284,7 @@
     <LinearLayout
         android:id="@+id/linearLayout_contact"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_weight="1"
         android:layout_margin="5dp"
         android:orientation="horizontal"
@@ -324,7 +324,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_weight="1"
         android:layout_margin="5dp"
         android:orientation="horizontal"

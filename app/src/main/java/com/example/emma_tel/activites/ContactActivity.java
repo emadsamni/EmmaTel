@@ -1,6 +1,7 @@
 package com.example.emma_tel.activites;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import com.example.emma_tel.R;
 import com.example.emma_tel.helprs.CustomerUtils;
 import com.example.emma_tel.utils.Utils;
 import com.example.emma_tel.viewmodels.LoginViewModel;
+
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class ContactActivity extends AppCompatActivity {
     CustomerUtils customerUtils;
@@ -89,5 +92,9 @@ public class ContactActivity extends AppCompatActivity {
     private void send(String message){
 
         loginViewModel.send(ContactActivity.this,message );
+    }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
     }

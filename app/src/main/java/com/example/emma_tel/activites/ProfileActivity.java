@@ -1,6 +1,7 @@
 package com.example.emma_tel.activites;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,6 +17,8 @@ import com.example.emma_tel.utils.Constants;
 import com.example.emma_tel.utils.Utils;
 import com.example.emma_tel.viewmodels.LoginViewModel;
 import com.rengwuxian.materialedittext.MaterialEditText;
+
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class ProfileActivity extends AppCompatActivity {
     private EditText name;
@@ -84,5 +87,9 @@ public class ProfileActivity extends AppCompatActivity {
     private void edit(  String name ){
 
         loginViewModel.updatekUser(ProfileActivity.this,name );
+    }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 }

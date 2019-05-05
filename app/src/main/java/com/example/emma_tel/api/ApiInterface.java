@@ -8,6 +8,7 @@ import com.example.emma_tel.models.Accessory;
 import com.example.emma_tel.models.Branch;
 import com.example.emma_tel.models.Category;
 import com.example.emma_tel.models.Company;
+import com.example.emma_tel.models.Complaint;
 import com.example.emma_tel.models.FacebookUser;
 import com.example.emma_tel.models.MainSlider;
 import com.example.emma_tel.models.Mobile;
@@ -67,8 +68,8 @@ public interface ApiInterface {
     Call<ApiResponse<User>> updateUser(@Query("key") String key ,@Query("token") String token , @Query("full_name") String name);
 
 
-    @POST("send")
-    Call<ApiResponse<String>> send(@Query("key") String key ,@Query("token") String token , @Query("Message") String message);
+    @POST("addComplaint")
+    Call<ApiResponse<Complaint>> send(@Query("key") String key , @Query("token") String token , @Query("content") String message);
 
 
 

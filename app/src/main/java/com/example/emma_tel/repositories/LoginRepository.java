@@ -15,6 +15,7 @@ import com.example.emma_tel.api.ApiInterface;
 import com.example.emma_tel.api.ApiResponse;
 import com.example.emma_tel.api.CallbackWithRetry;
 import com.example.emma_tel.helprs.CustomerUtils;
+import com.example.emma_tel.models.Complaint;
 import com.example.emma_tel.models.FacebookUser;
 import com.example.emma_tel.models.User;
 import com.example.emma_tel.utils.Constants;
@@ -198,21 +199,21 @@ public class LoginRepository {
 
     public void send(Context context , String message){
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<ApiResponse<String>> call=apiService.send(Constants.API_KEY , customerUtils.getString(Constants.PREF_TOKEN),message);
-        call.enqueue(new CallbackWithRetry<ApiResponse<String>>(call,context,3) {
+        Call<ApiResponse<Complaint>> call=apiService.send(Constants.API_KEY , customerUtils.getString(Constants.PREF_TOKEN),message);
+        call.enqueue(new CallbackWithRetry<ApiResponse<Complaint>>(call,context,3) {
             @Override
-            public void onResponse(Call<ApiResponse<String>> call, Response<ApiResponse<String>> response) {
+            public void onResponse(Call<ApiResponse<Complaint>> call, Response<ApiResponse<Complaint>> response) {
                 if (! response.isSuccessful()){
                     ProgressDialog.getInstance().cancel();
                     return;
                 }
-
-                Toast.makeText(context, context.getResources().getString(R.string.message_sended), Toast.LENGTH_SHORT).show();
+                Toasty.custom(application,R.string.message_sended,null,
+                        application.getResources().getColor(R.color.colorAccent),Constants.TOAST_TIME,false,true).show();
                 ProgressDialog.getInstance().cancel();
             }
 
             @Override
-            public void onFailure(Call<ApiResponse<String>> call, Throwable t) {
+            public void onFailure(Call<ApiResponse<Complaint>> call, Throwable t) {
                 ProgressDialog.getInstance().cancel();
             }
         });

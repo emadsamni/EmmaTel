@@ -86,7 +86,7 @@ public class MapFragment  extends Fragment {
                                     +b.getFixed_phone()+"\n"+getActivity().getResources().getString(R.string.whatsapp)
                                     +b.getWhatsapp();
                             mMap.addMarker(new MarkerOptions()
-                                    .position(new LatLng(33.519706, 36.302430))
+                                    .position(new LatLng(Double.parseDouble( b.getLat()), Double.parseDouble( b.getLng())))
                                     .title(b.getTitle())
                                     .snippet(address));
                         }

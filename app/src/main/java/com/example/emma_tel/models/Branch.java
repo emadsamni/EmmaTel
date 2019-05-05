@@ -34,6 +34,14 @@ public class Branch implements Serializable {
     private
     City city;
 
+    @SerializedName("lat")
+    private
+    String lat;
+
+    @SerializedName("lng")
+    private
+    String lng;
+
     public Integer getId() {
         return id;
     }
@@ -60,5 +68,13 @@ public class Branch implements Serializable {
 
     public City getCity() {
         return city;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public String getLat() {
+        return lat;
     }
 }
