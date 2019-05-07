@@ -14,7 +14,13 @@ public class Notification  implements Serializable {
     private
     String content;
 
+    @SerializedName("created_at")
+    private
+    String created_at;
 
+    public String getCreated_at() {
+        return created_at;
+    }
 
     public Integer getId() {
         return id;

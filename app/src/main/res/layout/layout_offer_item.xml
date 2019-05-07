@@ -48,9 +48,9 @@
 
             <ImageView
                 android:id="@+id/image_view_offer_image"
-                android:layout_width="250dp"
+                android:layout_width="300dp"
                 android:layout_height="150dp"
-                android:padding="15dp"
+               android:layout_marginTop="5dp"
 
                 />
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

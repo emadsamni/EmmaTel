@@ -2,12 +2,15 @@ package com.example.emma_tel.activites;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
 
 import com.example.emma_tel.R;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
+
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
 import io.github.inflationx.viewpump.ViewPump;
@@ -27,6 +30,11 @@ public class ApplicationManger extends Application implements Application.Activi
 
     }
 
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(context);
+        MultiDex.install(this);
+    }
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
 

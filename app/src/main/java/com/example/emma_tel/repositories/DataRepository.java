@@ -22,6 +22,9 @@ import com.example.emma_tel.models.Offer;
 import com.example.emma_tel.models.Page;
 import com.example.emma_tel.utils.Constants;
 import com.example.emma_tel.utils.ProgressDialog;
+
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -186,8 +189,10 @@ public class DataRepository {
                     Toast.makeText(application, R.string.unexpected_api_error,Toast.LENGTH_SHORT).show();
                 }
                 ProgressDialog.getInstance().cancel();
-                if (response.body().getData() != null)
+                if (response.body().getData() != null) {
+                    Collections.reverse(response.body().getData());
                     notificationList.postValue(response.body().getData());
+                }
             }
 
             @Override

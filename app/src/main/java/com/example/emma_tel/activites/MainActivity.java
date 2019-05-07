@@ -37,6 +37,7 @@ import com.example.emma_tel.helprs.CustomerUtils;
 import com.example.emma_tel.utils.Constants;
 import com.example.emma_tel.utils.LocaleHelper;
 import com.example.emma_tel.utils.OnNavigationItemSelected;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
         super.onCreate(savedInstanceState);
         customerUtils =CustomerUtils.getInstance(this);
         customerUtils.setLocalConfigration();
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
         setContentView(R.layout.activity_main);
         assignUIReference();
         assignAction();

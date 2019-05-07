@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "741236465914",
+    "firebase_url": "https://emmatel.firebaseio.com",
+    "project_id": "emmatel",
+    "storage_bucket": "emmatel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741236465914:android:62bbe4ccda931a1e",
+        "android_client_info": {
+          "package_name": "com.example.emma_tel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741236465914-sn64b5frqd8herkkr2kl2ssja06bmcvd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.emma_tel",
+            "certificate_hash": "88cb08e0533d49b6a7987684788cbbf6d75e97fc"
+          }
+        },
+        {
+          "client_id": "741236465914-3ktqru5daqb38hs59ehc5661mno828c1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbRpH1L_5M_VaOEsvFpnZ1u5Zwoo0mAIM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741236465914-3ktqru5daqb38hs59ehc5661mno828c1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
