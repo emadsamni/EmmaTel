@@ -127,6 +127,7 @@ public class MobilesFragment extends Fragment implements OnItemRecyclerClicked {
                     public void onClick(DialogInterface dialog, int which) {
                         type = which;
                     }
+
                 });
                 adb.setNegativeButton(getActivity().getResources().getString(R.string.cancel), null);
 

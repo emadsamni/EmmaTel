@@ -160,7 +160,7 @@ public class MapFragment  extends Fragment {
                         if (type != 0) {
                             CameraPosition googlePlex = CameraPosition.builder()
                                     .target(new LatLng(Double.parseDouble(branchList.get(type-1).getLat()),Double.parseDouble(branchList.get(type-1).getLng())))
-                                    .zoom(8)
+                                    .zoom(12)
                                     .bearing(0)
                                     .tilt(45)
                                     .build();

@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.emma_tel.R;
@@ -15,6 +17,7 @@ import com.example.emma_tel.interfaces.OnItemRecyclerClicked;
 import com.example.emma_tel.models.Accessory;
 import com.example.emma_tel.models.Mobile;
 import com.example.emma_tel.utils.Constants;
+import com.github.captain_miao.optroundcardview.OptRoundCardView;
 import com.squareup.picasso.Picasso;
 
 import java.util.Collections;
@@ -43,19 +46,19 @@ public class MobileAdapter extends RecyclerView.Adapter<MobileAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        Mobile current= data.get(i);
+        Mobile current = data.get(i);
         myViewHolder.mobileTitle.setText(current.getName());
         myViewHolder.mobilePrice.setText(current.getPrice());
         myViewHolder.mobileName.setText(current.getName());
-        Picasso.with(context).load(Constants.IMG_URL+current.getImage()).into(myViewHolder.mobileImage);
+        Picasso.with(context).load(Constants.IMG_URL + current.getImage()).into(myViewHolder.mobileImage);
         myViewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 onItemRecyclerClicked.onClickedRecyclerItem(current);
+                onItemRecyclerClicked.onClickedRecyclerItem(current);
             }
         });
-    }
 
+    }
     @Override
     public int getItemCount() {
         return data.size();
@@ -68,6 +71,7 @@ public class MobileAdapter extends RecyclerView.Adapter<MobileAdapter.MyViewHold
         TextView mobilePrice;
         TextView mobileName;
         Button button;
+        OptRoundCardView roundCardView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mobileImage = (ImageView) itemView.findViewById(R.id.image_view_Mobile_image);
@@ -75,6 +79,7 @@ public class MobileAdapter extends RecyclerView.Adapter<MobileAdapter.MyViewHold
             mobilePrice   =(TextView) itemView.findViewById(R.id.text_view_Mobile_price);
             mobileName = (TextView) itemView.findViewById(R.id.mobile_name);
             button =(Button)itemView.findViewById(R.id.details_button);
+            roundCardView =(OptRoundCardView)itemView.findViewById(R.id.card_view);
 
 
         }

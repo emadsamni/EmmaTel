@@ -5,8 +5,10 @@
     android:layout_height="match_parent"
     android:minWidth="1000dp"
     android:minHeight="1000dp"
-    android:padding="10dp"
-    android:orientation="vertical">
+    android:padding="40dp"
+    android:orientation="vertical"
+    android:background="@drawable/back"
+  >
     <ImageView
         android:layout_width="150dp"
         android:layout_height="50dp"
@@ -30,25 +32,25 @@
             android:layout_width="7dp"
             android:layout_height="11dp"
             android:layout_marginEnd="1dp"
-            android:background="@color/colorAccent">
+            android:background="@color/colorPrimary4">
         </View>
         <View
             android:layout_width="5dp"
             android:layout_height="11dp"
             android:layout_marginEnd="1dp"
-            android:background="@color/colorAccent">
+            android:background="@color/colorPrimary3">
         </View>
         <View
             android:layout_width="5dp"
             android:layout_height="11dp"
             android:layout_marginEnd="1dp"
-            android:background="@color/colorAccent">
+            android:background="@color/colorPrimary2">
         </View>
         <View
             android:layout_width="1dp"
             android:layout_height="11dp"
             android:layout_marginEnd="1dp"
-            android:background="@color/colorAccent">
+            android:background="@color/colorPrimary1">
         </View>
 
         <TextView

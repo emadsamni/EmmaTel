@@ -33,10 +33,10 @@ public class DataViewModels extends AndroidViewModel {
     private LiveData<List<Accessory>>  accessoryList;
     private String TAG = this.getClass().getSimpleName();
 
-    public DataViewModels(@NonNull Application application) {
-        super(application);
-        repository = DataRepository.getInstance(application);
-    }
+        public DataViewModels(@NonNull Application application) {
+            super(application);
+            repository = DataRepository.getInstance(application);
+        }
 
     public LiveData<List<MainSlider>> getMainSliderList(Context context){
         if (mainSliderList==null) {

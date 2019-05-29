@@ -22,6 +22,10 @@
             android:textColor="@color/ms_white"
             android:layout_height="wrap_content" />
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
     <LinearLayout
         android:layout_marginTop="140dp"
         android:background="@drawable/border_background_signup"
@@ -127,6 +131,13 @@
 
         </ScrollView>
     </LinearLayout>
+        <ImageView
+            android:layout_marginTop="140dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background"/>
+    </RelativeLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>
