@@ -34,7 +34,8 @@
     <string name="LogOut">LogOut</string>
     <string name="login_failed">phone or password is wrong</string>
     <string name="facebook_app_id">521711795025654</string>
-    <string name="fb_login_protocol_scheme">fb2199453887038296</string>
+    <string name="fb_login_protocol_scheme">fb521711795025654</string>
+
     <string name="user_exsist">User exsist</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
@@ -63,4 +64,14 @@
     <string name="browse">Browse</string>
     <string name="all">all</string>
     <string name="select_cat">Select Category</string>
+    <string name="compare">compare with</string>
+    <string name="Events">Events</string>
+    <string name="Tablets">Tablets</string>
+    <string name="mobile_status">Mobile Status</string>
+    <string name="Mobile_status_in_syrian_network">Mobile Status in Syrian Network</string>
+    <string name="Tips">Tips</string>
+    <string name="NoThing">Nothing</string>
+    <string name="select_mobile">Select Mobile</string>
+    <string name="no_tips">Sorry ,  There are no tips for this device</string>
+    <string name="sp">S.P</string>
 </resources>

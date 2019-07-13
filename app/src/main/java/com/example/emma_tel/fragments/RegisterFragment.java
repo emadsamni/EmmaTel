@@ -1,11 +1,10 @@
 package com.example.emma_tel.fragments;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
-import android.net.Uri;
+import androidx.lifecycle.ViewModelProviders;
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,17 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.emma_tel.R;
-import com.example.emma_tel.activites.RegisterActivity;
 import com.example.emma_tel.activites.StepperListener;
 import com.example.emma_tel.helprs.CustomerUtils;
-import com.example.emma_tel.helprs.MatrialEditText;
 import com.example.emma_tel.utils.Utils;
 import com.example.emma_tel.viewmodels.LoginViewModel;
-import com.rengwuxian.materialedittext.MaterialEditText;
-import com.rengwuxian.materialedittext.validation.RegexpValidator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

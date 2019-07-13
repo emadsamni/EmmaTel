@@ -4,9 +4,10 @@ import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDialogFragment;
+import androidx.appcompat.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -16,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.emma_tel.R;
+import com.example.emma_tel.activites.ComparationActivity;
 import com.example.emma_tel.models.Mobile;
 import com.example.emma_tel.utils.Constants;
 import com.squareup.picasso.Picasso;
@@ -24,13 +26,21 @@ import java.util.List;
 
 public class MobileViewDialog extends AppCompatDialogFragment {
     private Mobile mobile;
-    TextView mobileName ,mobileTitle, cpuText,ramText,screenText ,networkText,cameraText,frontCameraText,batteryText,storageText,detailsText;
+    private List<Mobile> mobileList;
+    TextView mobileName ,mobileTitle, cpuText,ramText,screenText ,networkText,cameraText,frontCameraText,batteryText,storageText,detailsText,mobilePrice;
     ImageView mobileImage;
     LinearLayout linearLayout;
+    Button compareButton;
+    int type;
 
 
     public  void setMobile(Mobile mobile) {
         this.mobile = mobile;
+    }
+
+
+    public  void setMobileList(List<Mobile> mobileList) {
+        this.mobileList = mobileList;
     }
 
     @Override
@@ -47,18 +57,22 @@ public class MobileViewDialog extends AppCompatDialogFragment {
     private  void assignUIReference(View view)
     {
         mobileName = view.findViewById(R.id.text_mobile);
+        mobilePrice = view.findViewById(R.id.text_view_Mobile_price);
+        compareButton = view.findViewById(R.id.compare);
         linearLayout =view.findViewById(R.id.linearLayout);
         mobileTitle = view.findViewById(R.id.text_Mobile_title);
         cpuText = view.findViewById(R.id.text_cpu);
         ramText = view.findViewById(R.id.text_ram);
         screenText = view.findViewById(R.id.text_screen);
         cameraText = view.findViewById(R.id.text_camera);
+
         frontCameraText = view.findViewById(R.id.text_front_camera);
         batteryText = view.findViewById(R.id.text_battery);
         storageText = view.findViewById(R.id.text_storage);
         detailsText = view.findViewById(R.id.text_details);
         mobileImage = view.findViewById(R.id.mobile_photo);
         networkText = view.findViewById(R.id.text_network);
+        mobilePrice.setText(mobile.getPrice() +" "+getActivity().getResources().getString(R.string.sp));
         linearLayout = view.findViewById(R.id.color);
         Picasso.with(getActivity()).load(Constants.IMG_URL+mobile.getImage()).into(mobileImage);
         mobileName.setText(mobile.getCompany().getName());
@@ -85,6 +99,9 @@ public class MobileViewDialog extends AppCompatDialogFragment {
             linearLayout.addView(color);
 
         }
+        setCompareButton(mobileList);
+
+
 
 
 
@@ -101,5 +118,45 @@ public class MobileViewDialog extends AppCompatDialogFragment {
         final AlertDialog d = (AlertDialog)getDialog();
         Window window = d.getWindow();
         window.setLayout(ActionBar.LayoutParams.FILL_PARENT, ActionBar.LayoutParams.FILL_PARENT);
+    }
+
+
+    public  void  setCompareButton(List<Mobile> mobileList)
+    {
+        String[] mobiles = new String[mobileList.size()];
+        mobiles[0] =getResources().getString(R.string.all);
+        for (int i=0;i<mobileList.size();i++)
+        {
+            mobiles[i] =mobileList.get(i).getName();
+        }
+        compareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                type =0;
+                AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
+                adb.setSingleChoiceItems(mobiles, 0, new DialogInterface.OnClickListener() {
+
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       type = which;
+                    }
+
+                });
+                adb.setNegativeButton(getActivity().getResources().getString(R.string.cancel), null);
+
+                adb.setPositiveButton(getActivity().getResources().getString(R.string.select), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent =  new Intent(getActivity() , ComparationActivity.class);
+                        intent.putExtra("first" ,mobile);
+                        intent.putExtra("second" ,mobileList.get(type));
+                        getActivity().startActivity(intent);
+                    }
+                });
+                adb.setTitle(getActivity().getResources().getString(R.string.select_company));
+                adb.show();
+            }
+        });
     }
 }

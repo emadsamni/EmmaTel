@@ -65,4 +65,14 @@
     <string name="browse">استعراض</string>
     <string name="all">الكل</string>
     <string name="select_cat">اختر الصنف </string>
+    <string name="compare">مقارنة مع</string>
+    <string name="Events">الفعاليات</string>
+    <string name="Tablets">تابليت</string>
+    <string name="mobile_status">حالة الموبايل </string>
+    <string name="Mobile_status_in_syrian_network">حالة الموبايل على الشبكة السورية </string>
+    <string name="Tips">نصائح </string>
+    <string name="NoThing">لا شئ</string>
+    <string name="select_mobile">اختر موبايل</string>
+    <string name="no_tips"> اسف , لا يوجد نصائح لهذا الموبايل </string>
+    <string name="sp">ل.س</string>
 </resources>

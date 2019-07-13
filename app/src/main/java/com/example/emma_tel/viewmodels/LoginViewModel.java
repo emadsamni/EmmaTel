@@ -1,10 +1,9 @@
 package com.example.emma_tel.viewmodels;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
+import androidx.lifecycle.AndroidViewModel;
 import android.content.Context;
 
-import com.example.emma_tel.activites.LoginActivity;
 import com.example.emma_tel.repositories.LoginRepository;
 import com.example.emma_tel.utils.ProgressDialog;
 

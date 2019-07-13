@@ -1,30 +1,28 @@
 package com.example.emma_tel.fragments;
 
 import android.app.AlertDialog;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.emma_tel.R;
-import com.example.emma_tel.adapters.AccessoryAdapter;
 import com.example.emma_tel.adapters.MobileAdapter;
 import com.example.emma_tel.interfaces.OnItemRecyclerClicked;
 import com.example.emma_tel.models.Accessory;
-import com.example.emma_tel.models.Branch;
 import com.example.emma_tel.models.Company;
 import com.example.emma_tel.models.Mobile;
+import com.example.emma_tel.models.Tablet;
 import com.example.emma_tel.viewmodels.DataViewModels;
 
 import java.util.ArrayList;
@@ -78,7 +76,13 @@ public class MobilesFragment extends Fragment implements OnItemRecyclerClicked {
     public void onClickedRecyclerItem(Mobile mobile) {
         MobileViewDialog mobileViewDialog = new MobileViewDialog() ;
         mobileViewDialog.setMobile(mobile);
+        mobileViewDialog.setMobileList(mobileList);
         mobileViewDialog.show(getActivity().getSupportFragmentManager(), "View JobDialog");
+    }
+
+    @Override
+    public void onClickedRecyclerItem(Tablet tablet) {
+
     }
 
     @Override

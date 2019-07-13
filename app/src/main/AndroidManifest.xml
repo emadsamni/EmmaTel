@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.emma_tel">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,12 +19,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-      >
-        <activity android:name=".activites.ContactActivity"></activity>
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activites.TabletComparationActivity" />
+        <activity android:name=".activites.ComparationActivity" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".activites.ContactActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDnrED6YzTafU4N3Go-yLAcsXhARGC1yY0" />
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
 
         <activity android:name=".activites.ProfileActivity" />
         <activity android:name=".activites.WelcomeActivity">
@@ -58,16 +69,17 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".activites.FirebaseMessage" android:exported="false">
+        <service
+            android:name=".activites.FirebaseMessage"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher_foreground" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
     </application>
 
 </manifest>

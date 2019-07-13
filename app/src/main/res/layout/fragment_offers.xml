@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -38,25 +38,25 @@
                     android:layout_width="7dp"
                     android:layout_height="11dp"
                     android:layout_marginEnd="1dp"
-                    android:background="@color/colorAccent">
+                    android:background="@color/colorPrimary4">
                 </View>
                 <View
                     android:layout_width="5dp"
                     android:layout_height="11dp"
                     android:layout_marginEnd="1dp"
-                    android:background="@color/colorAccent">
+                    android:background="@color/colorPrimary3">
                 </View>
                 <View
                     android:layout_width="5dp"
                     android:layout_height="11dp"
                     android:layout_marginEnd="1dp"
-                    android:background="@color/colorAccent">
+                    android:background="@color/colorPrimary2">
                 </View>
                 <View
                     android:layout_width="1dp"
                     android:layout_height="11dp"
                     android:layout_marginEnd="1dp"
-                    android:background="@color/colorAccent">
+                    android:background="@color/colorPrimary1">
                 </View>
 
                 <TextView
@@ -69,7 +69,7 @@
                     />
 
             </LinearLayout>
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_offer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -77,5 +77,5 @@
                 />
         </LinearLayout>
 
-    </android.support.design.widget.CoordinatorLayout>
-</android.support.constraint.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

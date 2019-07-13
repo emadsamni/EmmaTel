@@ -1,8 +1,8 @@
 package com.example.emma_tel.repositories;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -15,15 +15,18 @@ import com.example.emma_tel.models.Accessory;
 import com.example.emma_tel.models.Branch;
 import com.example.emma_tel.models.Category;
 import com.example.emma_tel.models.Company;
+import com.example.emma_tel.models.EMedia;
+import com.example.emma_tel.models.Event;
 import com.example.emma_tel.models.MainSlider;
 import com.example.emma_tel.models.Mobile;
 import com.example.emma_tel.models.Notification;
 import com.example.emma_tel.models.Offer;
 import com.example.emma_tel.models.Page;
+import com.example.emma_tel.models.Tablet;
+import com.example.emma_tel.models.Tips;
 import com.example.emma_tel.utils.Constants;
 import com.example.emma_tel.utils.ProgressDialog;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import retrofit2.Call;
@@ -32,10 +35,16 @@ import retrofit2.Response;
 public class DataRepository {
     private MutableLiveData<List<MainSlider>>  mainSliderList;
     private MutableLiveData<List<Mobile>>  mobilesList;
+    private MutableLiveData<List<Tablet>>  tabletsList;
     private MutableLiveData<List<Offer>>  offerList;
+    private MutableLiveData<List<Event>>  eventList;
+
+    private MutableLiveData<List<EMedia>>  mediaList;
     private MutableLiveData<List<Notification>>  notificationList;
     private MutableLiveData<List<Branch>>  branchList;
     private MutableLiveData<List<Page>> pageList;
+    private MutableLiveData<Page> aboutUS;
+    private MutableLiveData<Tips> tips;
     private MutableLiveData<List<Category>> categoryList;
     private MutableLiveData<List<Company>> companyList;
     private MutableLiveData<List<Accessory>> accessoryList;
@@ -61,6 +70,11 @@ public class DataRepository {
         getMobiles(context);
         return mobilesList;
     }
+    public LiveData<List<Tablet>> getTabletList( Context context){
+        tabletsList = new MutableLiveData<>();
+        getTablets(context);
+        return tabletsList;
+    }
 
     public LiveData<List<Offer>> getOfferList( Context context){
         offerList = new MutableLiveData<>();
@@ -68,6 +82,17 @@ public class DataRepository {
         return offerList;
     }
 
+    public LiveData<List<EMedia>> getMediaList( Context context){
+        mediaList = new MutableLiveData<>();
+        getMedia(context);
+        return mediaList;
+    }
+
+    public LiveData<List<Event>> getEventList(Context context) {
+        eventList = new MutableLiveData<>();
+        getEvents(context);
+        return eventList;
+    }
 
     public LiveData<List<Notification>> getNotificationList( Context context){
         notificationList = new MutableLiveData<>();
@@ -86,6 +111,20 @@ public class DataRepository {
         getPages(context);
         return pageList;
     }
+
+
+    public LiveData<Page> getAboutUs( Context context){
+        aboutUS = new MutableLiveData<>();
+        getPage(context);
+        return aboutUS;
+    }
+
+    public LiveData<Tips> getTips( Context context , String name){
+        tips = new MutableLiveData<>();
+        getTipsFunction(context , name);
+        return tips;
+    }
+
 
     public LiveData<List<Category>> getCategoryList( Context context){
         categoryList = new MutableLiveData<>();
@@ -131,6 +170,33 @@ public class DataRepository {
         });
 
     }
+
+
+
+    private void getMedia(Context context) {
+
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<ApiResponse<List<EMedia>>> call = apiService.getMedia(Constants.API_KEY);
+        call.enqueue(new CallbackWithRetry<ApiResponse<List<EMedia>>>(call,context,3) {
+            @Override
+            public void onResponse(Call<ApiResponse<List<EMedia>>> call, Response<ApiResponse<List<EMedia>>> response) {
+                if (!response.isSuccessful()){
+                    ProgressDialog.getInstance().cancel();
+                    Toast.makeText(application, R.string.unexpected_api_error,Toast.LENGTH_SHORT).show();
+                }
+                ProgressDialog.getInstance().cancel();
+                if (response.body().getData() != null)
+                    mediaList.postValue(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<List<EMedia>>> call, Throwable t) {
+                onFailure(t);
+            }
+        });
+
+
+    }
     private void getMobiles(Context context) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ApiResponse<List<Mobile>>> call = apiService.getMobiles(Constants.API_KEY);
@@ -152,6 +218,30 @@ public class DataRepository {
                 onFailure(t);
             }
         });
+    }
+
+    private void getTablets(Context context) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<ApiResponse<List<Tablet>>> call = apiService.getTablets(Constants.API_KEY);
+        call.enqueue(new CallbackWithRetry<ApiResponse<List<Tablet>>>(call, context, 3) {
+            @Override
+            public void onResponse(Call<ApiResponse<List<Tablet>>> call, Response<ApiResponse<List<Tablet>>> response) {
+                if (!response.isSuccessful()) {
+                    ProgressDialog.getInstance().cancel();
+                    Toast.makeText(application, R.string.unexpected_api_error, Toast.LENGTH_SHORT).show();
+                }
+                ProgressDialog.getInstance().cancel();
+                if (response.body().getData() != null)
+                    tabletsList.postValue(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<List<Tablet>>> call, Throwable t) {
+                onFailure(t);
+            }
+        });
+
+
     }
 
     private void getOffers(Context context) {
@@ -177,6 +267,31 @@ public class DataRepository {
 
     }
 
+
+    private void getEvents(Context context) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<ApiResponse<List<Event>>> call = apiService.getEvents(Constants.API_KEY);
+
+        call.enqueue(new CallbackWithRetry<ApiResponse<List<Event>>>(call,context,3) {
+            @Override
+            public void onResponse(Call<ApiResponse<List<Event>>> call, Response<ApiResponse<List<Event>>> response) {
+                if (!response.isSuccessful()){
+                    ProgressDialog.getInstance().cancel();
+                    Toast.makeText(application, R.string.unexpected_api_error,Toast.LENGTH_SHORT).show();
+                }
+                ProgressDialog.getInstance().cancel();
+                if (response.body().getData() != null)
+                    eventList.postValue(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<List<Event>>> call, Throwable t) {
+                onFailure(t);
+            }
+        });
+
+
+    }
     private void getNotifications(Context context) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ApiResponse<List<Notification>>> call = apiService.getNotifications(Constants.API_KEY);
@@ -246,6 +361,56 @@ public class DataRepository {
             @Override
             public void onFailure(Call<ApiResponse<List<Page>>> call, Throwable t) {
                 onFailure(t);
+            }
+        });
+
+
+    }
+
+    private void getPage(Context context) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<ApiResponse<Page>> call = apiService.getPage(Constants.API_KEY ,"about-as");
+        call.enqueue(new CallbackWithRetry<ApiResponse<Page>>(call,context,3) {
+            @Override
+            public void onResponse(Call<ApiResponse<Page>> call, Response<ApiResponse<Page>> response) {
+                if (!response.isSuccessful()){
+                    ProgressDialog.getInstance().cancel();
+                    Toast.makeText(application, R.string.unexpected_api_error,Toast.LENGTH_SHORT).show();
+                }
+                ProgressDialog.getInstance().cancel();
+                if (response.body().getData() != null)
+                    aboutUS.postValue(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<Page>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void getTipsFunction(Context context , String name) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<ApiResponse<List<Tips>>> call = apiService.getTips(Constants.API_KEY ,name);
+        call.enqueue(new CallbackWithRetry<ApiResponse<List<Tips>>>(call,context,3) {
+            @Override
+            public void onResponse(Call<ApiResponse<List<Tips>>> call, Response<ApiResponse<List<Tips>>> response) {
+                if (!response.isSuccessful()){
+                    ProgressDialog.getInstance().cancel();
+                    Toast.makeText(application, R.string.unexpected_api_error,Toast.LENGTH_SHORT).show();
+                }
+                ProgressDialog.getInstance().cancel();
+                if (response.body().getData() != null)
+                    if (response.body().getData().size()>0)
+                      tips.postValue(response.body().getData().get(0));
+                    else
+                        tips.postValue(new Tips(context.getResources().getString(R.string.no_tips)));
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<List<Tips>>> call, Throwable t) {
+
             }
         });
 
@@ -325,5 +490,6 @@ public class DataRepository {
 
 
     }
+
 
 }

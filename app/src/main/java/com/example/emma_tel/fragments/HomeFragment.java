@@ -1,18 +1,18 @@
 package com.example.emma_tel.fragments;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,37 +20,28 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.allattentionhere.autoplayvideos.AAH_CustomRecyclerView;
 
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.emma_tel.R;
 import com.example.emma_tel.activites.ContactActivity;
 import com.example.emma_tel.activites.LoginActivity;
 import com.example.emma_tel.activites.MainActivity;
 import com.example.emma_tel.adapters.MainSliderAdapter;
-import com.example.emma_tel.adapters.MobileAdapter;
+import com.example.emma_tel.adapters.MediaAdapter;
+import com.example.emma_tel.adapters.MyVideosAdapter;
 import com.example.emma_tel.adapters.SliderAdapter;
 import com.example.emma_tel.helprs.CustomerUtils;
+import com.example.emma_tel.models.EMedia;
 import com.example.emma_tel.models.MainSlider;
 import com.example.emma_tel.utils.Constants;
 import com.example.emma_tel.viewmodels.DataViewModels;
 import com.example.emma_tel.viewmodels.LoginViewModel;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
+import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.ButterKnife;
 
 public class HomeFragment extends Fragment {
     DataViewModels dataViewModels;
@@ -59,7 +50,10 @@ public class HomeFragment extends Fragment {
     private  LinearLayout  linearLayout;
     private SliderAdapter sliderAdapter;
     private RecyclerView myRecyclerView;
+    private AAH_CustomRecyclerView mediaRecyclerView;
     private MainSliderAdapter mAdapter;
+    private MediaAdapter mediaAdapter;
+    Picasso p;
     CustomerUtils customerUtils;
     LinearLayout mobilesLinearLayout ,accessoriesLinearLayout ,offersLinearLayout ,branchesLinearLayout ,contactLinearLayout ,aboutLinearLayout;
 
@@ -70,9 +64,11 @@ public class HomeFragment extends Fragment {
     }
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=  inflater.inflate(R.layout.fragment_home, container,false);
-          assignUIReference(view);
+        ButterKnife.bind(getActivity());
+         p = Picasso.with(getActivity());
+
+        assignUIReference(view);
           assignAction();
-          initFacebookLogin(view);
 
           //getMainSlider();
          return  view;
@@ -85,15 +81,19 @@ public class HomeFragment extends Fragment {
         branchesLinearLayout = view.findViewById(R.id.linearLayout_branches);
         contactLinearLayout = view.findViewById(R.id.linearLayout_contact);
         customerUtils = CustomerUtils.getInstance(getActivity());
+
         //viewPager = (ViewPager)view.findViewById(R.id.view_pager);
         linearLayout= (LinearLayout)view.findViewById(R.id.dots);
         myRecyclerView =(RecyclerView) view.findViewById(R.id.recycler_main_slider);
+        mediaRecyclerView =(AAH_CustomRecyclerView) view.findViewById(R.id.rv_home);
+
         dataViewModels = ViewModelProviders.of(getActivity()).get(DataViewModels.class);
         loginViewModel = ViewModelProviders.of(getActivity()).get(LoginViewModel.class);
         dataViewModels.getMainSliderList(getActivity()).observe(getActivity(), new Observer<List<MainSlider>>() {
             @Override
             public void onChanged(@Nullable List<MainSlider> mainSliders) {
                 mAdapter =new MainSliderAdapter(mainSliders,getActivity());
+
                 myRecyclerView.setAdapter(mAdapter);
                 LinearLayoutManager layoutManager =new LinearLayoutManager( getActivity());
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -102,6 +102,49 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
+        dataViewModels.getMediaList(getActivity()).observe(getActivity(), new Observer<List<EMedia>>() {
+            @Override
+            public void onChanged(@Nullable List<EMedia> eMedia) {
+                MyVideosAdapter mAdapter = new MyVideosAdapter(eMedia, p);
+                LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+
+                mediaRecyclerView.setLayoutManager(mLayoutManager);
+                mediaRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+                //todo before setAdapter
+                mediaRecyclerView.setActivity(getActivity());
+
+                //optional - to play only first visible video
+                mediaRecyclerView.setPlayOnlyFirstVideo(true); // false by default
+
+                //optional - by default we check if url ends with ".mp4". If your urls do not end with mp4, you can set this param to false and implement your own check to see if video points to url
+                mediaRecyclerView.setCheckForMp4(false); //true by default
+
+                //optional - download videos to local storage (requires "android.permission.WRITE_EXTERNAL_STORAGE" in manifest or ask in runtime)
+                mediaRecyclerView.setDownloadPath(Environment.getExternalStorageDirectory() + "/MyVideo"); // (Environment.getExternalStorageDirectory() + "/Video") by default
+
+                mediaRecyclerView.setDownloadVideos(true); // false by default
+
+                mediaRecyclerView.setVisiblePercent(100); // percentage of View that needs to be visible to start playing
+
+                //extra - start downloading all videos in background before loading RecyclerView
+                List<String> urls = new ArrayList<>();
+                for (EMedia object : eMedia) {
+                    if (object.getName() != null )
+                        urls.add("https://api.emma-tel.com/upload/"+object.getName());
+                }
+                mediaRecyclerView.preDownload(urls);
+
+                mediaRecyclerView.setAdapter(mAdapter);
+                //call this functions when u want to start autoplay on loading async lists (eg firebase)
+                mediaRecyclerView.smoothScrollBy(0,1);
+                mediaRecyclerView.smoothScrollBy(0,-1);
+
+                ;
+            }
+        });
+
 
 
 
@@ -200,68 +243,10 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private LoginButton loginButton;
-    private CallbackManager callbackManager;
-    private void initFacebookLogin(View container) {
-        LoginManager.getInstance().logOut();
-
-        loginButton = container.findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList("public_profile", "email"));
-        loginButton.setFragment(this);
-
-        callbackManager = CallbackManager.Factory.create();
-
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                GraphRequest request = GraphRequest.newMeRequest(
-                        loginResult.getAccessToken(),
-                        new GraphRequest.GraphJSONObjectCallback() {
-                            @Override
-                            public void onCompleted(JSONObject object, GraphResponse response) {
-                                Log.v("LoginActivity", response.toString());
-
-                                // Application code
-                                try {
-                                    String email = object.getString("email");
-                                    String name = object.getString("name");
-                                    loginViewModel.addFacebookUser(getActivity() ,loginResult.getAccessToken().getUserId() ,name,email);
-
-
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-                            }
-                        });
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,email,gender,birthday");
-                request.setParameters(parameters);
-                request.executeAsync();
-
-            }
-            @Override
-            public void onCancel() {
-            }
-            @Override
-            public void onError(FacebookException exception) {
-            }
-        });
-    }
-
-
-
-
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onStop() {
+        super.onStop();
+        mediaRecyclerView.stopVideos();
     }
-
-
-
-
-
 }

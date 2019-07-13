@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
-import android.support.design.widget.NavigationView;
 
 import com.example.emma_tel.R;
 import com.example.emma_tel.utils.Constants;

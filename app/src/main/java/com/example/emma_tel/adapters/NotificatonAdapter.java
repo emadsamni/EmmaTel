@@ -1,18 +1,14 @@
 package com.example.emma_tel.adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.emma_tel.R;
-import com.example.emma_tel.interfaces.OnItemRecyclerClicked;
-import com.example.emma_tel.models.Mobile;
 import com.example.emma_tel.models.Notification;
 
 import java.text.DateFormat;

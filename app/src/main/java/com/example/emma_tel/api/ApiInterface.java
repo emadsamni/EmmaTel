@@ -9,12 +9,16 @@ import com.example.emma_tel.models.Branch;
 import com.example.emma_tel.models.Category;
 import com.example.emma_tel.models.Company;
 import com.example.emma_tel.models.Complaint;
+import com.example.emma_tel.models.EMedia;
+import com.example.emma_tel.models.Event;
 import com.example.emma_tel.models.FacebookUser;
 import com.example.emma_tel.models.MainSlider;
 import com.example.emma_tel.models.Mobile;
 import com.example.emma_tel.models.Notification;
 import com.example.emma_tel.models.Offer;
 import com.example.emma_tel.models.Page;
+import com.example.emma_tel.models.Tablet;
+import com.example.emma_tel.models.Tips;
 import com.example.emma_tel.models.User;
 
 import java.util.List;
@@ -28,11 +32,20 @@ public interface ApiInterface {
     @GET("getMobiles")
     Call<ApiResponse<List<Mobile>>> getMobiles(@Query("key") String key);
 
+
+    @GET("getTips")
+    Call<ApiResponse<List<Tips>>> getTips(@Query("key") String key , @Query("name") String name);
+
+    @GET("getTablets")
+    Call<ApiResponse<List<Tablet>>> getTablets (@Query("key") String key);
     @GET("getMainSlider")
     Call<ApiResponse<List<MainSlider>>> getMainSlider(@Query("key") String key);
 
     @GET("getOffers")
     Call<ApiResponse<List<Offer>>> getOffers(@Query("key") String key);
+
+    @GET("getEvents")
+    Call<ApiResponse<List<Event>>> getEvents(@Query("key") String key);
 
     @GET("getNotifications")
     Call<ApiResponse<List<Notification>>> getNotifications(@Query("key") String key);
@@ -42,6 +55,13 @@ public interface ApiInterface {
 
     @GET("getPages")
     Call<ApiResponse<List<Page>>> getPages(@Query("key") String key);
+
+
+    @GET("getMedia")
+    Call<ApiResponse<List<EMedia>>> getMedia(@Query("key") String key);
+
+    @GET("getPage")
+    Call<ApiResponse<Page>> getPage(@Query("key") String key ,@Query("name") String name) ;
 
     @GET("getCompanies")
     Call<ApiResponse<List<Company>>> getCompanies(@Query("key") String key);

@@ -5,7 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDialogFragment;
+import androidx.appcompat.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -15,13 +15,12 @@ import android.widget.TextView;
 
 import com.example.emma_tel.R;
 import com.example.emma_tel.models.Accessory;
-import com.example.emma_tel.models.Mobile;
 import com.example.emma_tel.utils.Constants;
 import com.squareup.picasso.Picasso;
 
 public class AccessoryViewDialog extends AppCompatDialogFragment {
     private Accessory accessory;
-    TextView accessoryName ,accessoryTitle, detailsText , companytext;
+    TextView accessoryName ,accessoryTitle, detailsText , companytext, accessoryPrice;
     ImageView accessoryImage;
     LinearLayout linearLayout;
 
@@ -44,6 +43,8 @@ public class AccessoryViewDialog extends AppCompatDialogFragment {
     private  void assignUIReference(View view)
     {
         accessoryName =view.findViewById(R.id.text_accessory);
+        accessoryPrice =view.findViewById(R.id.text_view_accessory_price);
+
         accessoryTitle =view.findViewById(R.id.text_accessory_title);
         accessoryImage =view.findViewById(R.id.accessory_photo);
         //linearLayout =view.findViewById(R.id.linearLayout);
@@ -52,6 +53,7 @@ public class AccessoryViewDialog extends AppCompatDialogFragment {
         Picasso.with(getActivity()).load(Constants.IMG_URL+accessory.getImage()).into(accessoryImage);
         accessoryName.setText(accessory.getCategory().getName());
         accessoryTitle.setText(accessory.getName());
+        accessoryPrice.setText(accessory.getPrice()+" "+getActivity().getResources().getString(R.string.sp));
        detailsText.setText(accessory.getDetails());
 
         String[] colors = accessory.getColors().split(";");

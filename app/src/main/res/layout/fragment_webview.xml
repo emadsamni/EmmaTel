@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:src="@drawable/emma_tel"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                >
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="11dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="@color/colorPrimary">
+
+                </View>
+                <View
+                    android:layout_width="7dp"
+                    android:layout_height="11dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="@color/colorPrimary4">
+                </View>
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="11dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="@color/colorPrimary3">
+                </View>
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="11dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="@color/colorPrimary2">
+                </View>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="11dp"
+                    android:layout_marginEnd="1dp"
+                    android:background="@color/colorPrimary1">
+                </View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Mobile_status_in_syrian_network"
+                    android:paddingStart="10dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorAccent"
+                    />
+
+            </LinearLayout>
+            <im.delight.android.webview.AdvancedWebView
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

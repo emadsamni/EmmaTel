@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -73,21 +73,29 @@
         />
 
   </LinearLayout>
-  <ScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-  <android.support.v7.widget.RecyclerView
+  <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recycler_main_slider"
       android:layout_width="match_parent"
+      android:visibility="visible"
       android:layout_height="200dp"
       android:orientation="horizontal"
       />
 
-  <LinearLayout
+      <com.allattentionhere.autoplayvideos.AAH_CustomRecyclerView
+          android:id="@+id/rv_home"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          />
+
+
+
+      <LinearLayout
+          android:visibility="gone"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
@@ -355,31 +363,12 @@
 
 
 
-
-
-  <LinearLayout
-      android:id="@+id/dots"
-      android:layout_width="match_parent"
-      android:layout_height="40dp"
-      android:orientation="vertical"
-      android:gravity="center"
-      android:layout_alignParentBottom="true"
-
-
-      >
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        />
-  </LinearLayout>
     </LinearLayout>
 
-  </ScrollView>
+
 </LinearLayout>
 
 
 </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

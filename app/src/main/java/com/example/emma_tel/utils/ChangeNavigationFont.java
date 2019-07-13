@@ -2,7 +2,7 @@ package com.example.emma_tel.utils;
 
 import android.app.Activity;
 import android.graphics.Typeface;
-import android.support.design.widget.NavigationView;
+import com.google.android.material.navigation.NavigationView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.view.Menu;

@@ -1,18 +1,17 @@
 package com.example.emma_tel.activites;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +25,6 @@ import com.example.emma_tel.fragments.RegisterFragment;
 import com.example.emma_tel.fragments.VerificationFragment;
 import com.example.emma_tel.helprs.CustomerUtils;
 import com.example.emma_tel.utils.Constants;
-import com.example.emma_tel.viewmodels.LoginViewModel;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 

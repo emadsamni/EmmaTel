@@ -6,11 +6,11 @@ android {
     defaultConfig {
         multiDexEnabled true
         applicationId "com.example.emma_tel"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -27,25 +27,25 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:design:27.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-beta01'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.github.simbiose:Encryption:2.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0-beta01'
     implementation 'me.anwarshahriar:calligrapher:1.0'
-    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.google.firebase:firebase-messaging:17.3.2'
     testImplementation 'junit:junit:4.12'
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     implementation 'com.github.onemandan:MaterialTextView:0.0.5'
-    implementation "com.android.support:support-v4:+"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.daimajia.slider:library:1.1.5@aar'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
@@ -56,7 +56,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-login:[4,5)'
     implementation 'com.jcminarro:RoundKornerLayouts:0.4.0'
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.multidex:multidex:2.0.0'
     //for fonts
     implementation 'io.github.inflationx:calligraphy3:3.1.0'
     implementation 'io.github.inflationx:viewpump:1.0.0'
@@ -65,8 +65,18 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:17.3.2'
     implementation 'com.google.firebase:firebase-core:15.0.0'
     apply plugin: 'com.google.gms.google-services'
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.multidex:multidex:2.0.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
     implementation 'com.github.captain-miao:optroundcardview:1.0.0'
+    implementation 'com.jakewharton:butterknife:8.6.0'
+    implementation 'com.allattentionhere:autoplayvideos:0.2.0'
+    implementation 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
+    implementation 'cn.jzvd:jiaozivideoplayer:7.0.4'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.4'
+    
+
+
 
 
 }

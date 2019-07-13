@@ -14,7 +14,7 @@ public class Page implements Serializable {
     private
     String content;
 
-    @SerializedName("title")
+    @SerializedName("name")
     private
     String title;
 

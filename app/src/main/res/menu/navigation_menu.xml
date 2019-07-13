@@ -15,7 +15,14 @@
             android:title="@string/Mobiles"
             android:icon="@drawable/mobile">
 
+
         </item>
+            <item android:id="@+id/Tablets"
+                android:title="@string/Tablets"
+                android:icon="@drawable/tablet">
+
+
+            </item>
         <item android:id="@+id/Accessories"
             android:title="@string/Accessories"
             android:icon="@drawable/accessory">
@@ -30,13 +37,28 @@
         android:icon="@drawable/offer">
 
     </item>
+        <item android:id="@+id/events"
+            android:title="@string/Events"
+            android:icon="@drawable/events">
+
+        </item>
 
     <item android:id="@+id/Branches"
         android:title="@string/Branches"
         android:icon="@drawable/branch">
 
     </item>
+        <item android:id="@+id/mobile_status"
+            android:title="@string/mobile_status"
+            android:icon="@drawable/status">
 
+        </item>
+
+        <item android:id="@+id/Tips"
+            android:title="@string/Tips"
+            android:icon="@drawable/tips">
+
+        </item>
 
         <item android:id="@+id/Contact"
             android:title="@string/Contact_us"
