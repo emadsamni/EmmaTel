@@ -127,6 +127,7 @@ public class MobileViewDialog extends AppCompatDialogFragment {
         mobiles[0] =getResources().getString(R.string.all);
         for (int i=0;i<mobileList.size();i++)
         {
+            if (!mobileList.get(i).getId().equals(mobile.getId()))
             mobiles[i] =mobileList.get(i).getName();
         }
         compareButton.setOnClickListener(new View.OnClickListener() {

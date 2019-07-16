@@ -26,10 +26,10 @@
                 android:layout_height="175dp">
 
                 <ImageView
-                    android:layout_width="match_parent"
                     android:id="@+id/image"
-                    android:scaleType="centerCrop"
-                    android:layout_height="match_parent" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
             </FrameLayout>
 
             <TextView

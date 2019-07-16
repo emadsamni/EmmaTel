@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Handler;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -13,10 +14,12 @@ import androidx.fragment.app.Fragment;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.util.Base64;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -29,6 +32,7 @@ import com.example.emma_tel.helprs.CustomerUtils;
 import com.example.emma_tel.utils.Constants;
 import com.example.emma_tel.utils.OnNavigationItemSelected;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.shuyu.gsyvideoplayer.GSYVideoManager;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -45,8 +49,14 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
     LinearLayout linearLayoutoff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+            getWindow().setEnterTransition(new Explode());
+            getWindow().setExitTransition(new Explode());
+        }
         super.onCreate(savedInstanceState);
         customerUtils =CustomerUtils.getInstance(this);
+
         customerUtils.setLocalConfigration();
         FirebaseMessaging.getInstance().subscribeToTopic("all");
         setContentView(R.layout.activity_main);
@@ -131,6 +141,9 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed();
+            return;
+        }
+        if (GSYVideoManager.backFromWindowFull(this)) {
             return;
         }
         navigationView.getMenu().getItem(0).setChecked(true);

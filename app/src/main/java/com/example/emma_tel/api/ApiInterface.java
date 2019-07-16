@@ -57,7 +57,7 @@ public interface ApiInterface {
     Call<ApiResponse<List<Page>>> getPages(@Query("key") String key);
 
 
-    @GET("getMedia")
+    @GET("getVideos")
     Call<ApiResponse<List<EMedia>>> getMedia(@Query("key") String key);
 
     @GET("getPage")

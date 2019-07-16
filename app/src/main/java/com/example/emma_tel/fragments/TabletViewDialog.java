@@ -114,6 +114,7 @@ public class TabletViewDialog  extends AppCompatDialogFragment {
         tables[0] =getResources().getString(R.string.all);
         for (int i=0;i<tabletList.size();i++)
         {
+            if (!tabletList.get(i).getId().equals(tablet))
             tables[i] =tabletList.get(i).getName();
         }
         compareButton.setOnClickListener(new View.OnClickListener() {

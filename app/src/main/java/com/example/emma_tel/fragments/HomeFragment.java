@@ -3,6 +3,7 @@ package com.example.emma_tel.fragments;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -13,10 +14,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
+import android.transition.Explode;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,23 +37,37 @@ import com.example.emma_tel.helprs.CustomerUtils;
 import com.example.emma_tel.models.EMedia;
 import com.example.emma_tel.models.MainSlider;
 import com.example.emma_tel.utils.Constants;
+import com.example.emma_tel.video_time_line.RecyclerBaseAdapter;
+import com.example.emma_tel.video_time_line.RecyclerItemNormalHolder;
+import com.example.emma_tel.video_time_line.RecyclerNormalAdapter;
+import com.example.emma_tel.video_time_line.VideoModel;
 import com.example.emma_tel.viewmodels.DataViewModels;
 import com.example.emma_tel.viewmodels.LoginViewModel;
+import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HomeFragment extends Fragment {
+    @BindView(R.id.list_item_recycler)
+    RecyclerView videoList;
+    LinearLayoutManager linearLayoutManager;
+
+    RecyclerBaseAdapter recyclerBaseAdapter;
+
+    List<VideoModel> dataList = new ArrayList<>();
+
     DataViewModels dataViewModels;
     LoginViewModel loginViewModel;
     private ViewPager viewPager;
     private  LinearLayout  linearLayout;
     private SliderAdapter sliderAdapter;
     private RecyclerView myRecyclerView;
-    private AAH_CustomRecyclerView mediaRecyclerView;
+
     private MainSliderAdapter mAdapter;
     private MediaAdapter mediaAdapter;
     Picasso p;
@@ -67,25 +84,22 @@ public class HomeFragment extends Fragment {
         ButterKnife.bind(getActivity());
          p = Picasso.with(getActivity());
 
+
         assignUIReference(view);
-          assignAction();
+
+
 
           //getMainSlider();
          return  view;
     }
     private void assignUIReference(final View view){
-        mobilesLinearLayout = view.findViewById(R.id.linearLayout_mobiles);
-        accessoriesLinearLayout = view.findViewById(R.id.linearLayout_accessory);
-        aboutLinearLayout = view.findViewById(R.id.linearLayout_about);
-        offersLinearLayout= view.findViewById(R.id.linearLayout_offers);
-        branchesLinearLayout = view.findViewById(R.id.linearLayout_branches);
-        contactLinearLayout = view.findViewById(R.id.linearLayout_contact);
+
         customerUtils = CustomerUtils.getInstance(getActivity());
 
         //viewPager = (ViewPager)view.findViewById(R.id.view_pager);
         linearLayout= (LinearLayout)view.findViewById(R.id.dots);
         myRecyclerView =(RecyclerView) view.findViewById(R.id.recycler_main_slider);
-        mediaRecyclerView =(AAH_CustomRecyclerView) view.findViewById(R.id.rv_home);
+
 
         dataViewModels = ViewModelProviders.of(getActivity()).get(DataViewModels.class);
         loginViewModel = ViewModelProviders.of(getActivity()).get(LoginViewModel.class);
@@ -100,6 +114,7 @@ public class HomeFragment extends Fragment {
                 myRecyclerView.setLayoutManager(layoutManager);
 
 
+
             }
         });
 
@@ -108,40 +123,8 @@ public class HomeFragment extends Fragment {
             public void onChanged(@Nullable List<EMedia> eMedia) {
                 MyVideosAdapter mAdapter = new MyVideosAdapter(eMedia, p);
                 LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                configVideoTimeline(view ,eMedia );
 
-                mediaRecyclerView.setLayoutManager(mLayoutManager);
-                mediaRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
-                //todo before setAdapter
-                mediaRecyclerView.setActivity(getActivity());
-
-                //optional - to play only first visible video
-                mediaRecyclerView.setPlayOnlyFirstVideo(true); // false by default
-
-                //optional - by default we check if url ends with ".mp4". If your urls do not end with mp4, you can set this param to false and implement your own check to see if video points to url
-                mediaRecyclerView.setCheckForMp4(false); //true by default
-
-                //optional - download videos to local storage (requires "android.permission.WRITE_EXTERNAL_STORAGE" in manifest or ask in runtime)
-                mediaRecyclerView.setDownloadPath(Environment.getExternalStorageDirectory() + "/MyVideo"); // (Environment.getExternalStorageDirectory() + "/Video") by default
-
-                mediaRecyclerView.setDownloadVideos(true); // false by default
-
-                mediaRecyclerView.setVisiblePercent(100); // percentage of View that needs to be visible to start playing
-
-                //extra - start downloading all videos in background before loading RecyclerView
-                List<String> urls = new ArrayList<>();
-                for (EMedia object : eMedia) {
-                    if (object.getName() != null )
-                        urls.add("https://api.emma-tel.com/upload/"+object.getName());
-                }
-                mediaRecyclerView.preDownload(urls);
-
-                mediaRecyclerView.setAdapter(mAdapter);
-                //call this functions when u want to start autoplay on loading async lists (eg firebase)
-                mediaRecyclerView.smoothScrollBy(0,1);
-                mediaRecyclerView.smoothScrollBy(0,-1);
-
-                ;
             }
         });
 
@@ -149,104 +132,84 @@ public class HomeFragment extends Fragment {
 
 
     }
-    private void assignAction(){
-        mobilesLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new MobilesFragment();
-                ((MainActivity)getActivity()).navigationView.getMenu().getItem(1).setChecked(true);
-                ((MainActivity)getActivity()).loadFragment(fragment);
-            }
-        });
-        accessoriesLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new AccessoriesFragment();
-                ((MainActivity)getActivity()).navigationView.getMenu().getItem(2).setChecked(true);
-                ((MainActivity)getActivity()).loadFragment(fragment);
-            }
-        });
-        offersLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new OffersFragment();
-                ((MainActivity)getActivity()).navigationView.getMenu().getItem(3).setChecked(true);
-                ((MainActivity)getActivity()).loadFragment(fragment);
-            }
-        });
-        branchesLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new MapFragment();
-                ((MainActivity)getActivity()).navigationView.getMenu().getItem(4).setChecked(true);
-                ((MainActivity)getActivity()).loadFragment(fragment);
-            }
-        });
-        contactLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                if (customerUtils.isFound(Constants.PREF_TOKEN))
-                     startActivity(new Intent(getActivity(), ContactActivity.class));
-                else
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
-            }
-        });
-        aboutLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new AboutUsFragment();
-                ((MainActivity)getActivity()).navigationView.getMenu().getItem(6).setChecked(true);
-                ((MainActivity)getActivity()).loadFragment(fragment);
-            }
-        });
 
-    }
-    public void autoSwip(int size ,int current)
+
+
+
+    private void configVideoTimeline(View view ,List<EMedia> eMedia)
     {
-        new Handler().postDelayed(new Runnable() {
+        ButterKnife.bind(getActivity());
+        videoList =view.findViewById(R.id.list_item_recycler);
+        resolveData(eMedia);
+        final RecyclerNormalAdapter recyclerNormalAdapter = new RecyclerNormalAdapter(getActivity(), dataList);
+        linearLayoutManager = new LinearLayoutManager(getActivity());
+        videoList.setLayoutManager(linearLayoutManager);
+        videoList.setAdapter(recyclerNormalAdapter);
+
+        videoList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            int firstVisibleItem, lastVisibleItem;
 
             @Override
-            public void run() {
-                viewPager.setCurrentItem(current+1);
-                if (size == current+1)
-                {
-                    autoSwip(size,-1);
-                }
-                else
-                {
-                    autoSwip(size,current+1);
-                }
-
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
             }
-        }, 2000);
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                firstVisibleItem   = linearLayoutManager.findFirstVisibleItemPosition();
+                lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+                //大于0说明有播放
+                if (GSYVideoManager.instance().getPlayPosition() >= 0) {
+                    //当前播放的位置
+                    int position = GSYVideoManager.instance().getPlayPosition();
+                    //对应的播放列表TAG
+                    if (GSYVideoManager.instance().getPlayTag().equals(RecyclerItemNormalHolder.TAG)
+                            && (position < firstVisibleItem || position > lastVisibleItem)) {
+
+                        //如果滑出去了上面和下面就是否，和今日头条一样
+                        //是否全屏
+                        if(!GSYVideoManager.isFullState(getActivity())) {
+                            GSYVideoManager.releaseAllVideos();
+                            recyclerNormalAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+            }
+        });
+
 
     }
 
-    public  void addDotsIndicator(int size , LinearLayout linearLayout , int position)
-    {
-        TextView[] mDots;
-        mDots = new TextView[size];
-        for (int i=0; i<size;i++)
-        {
-            mDots[i] = new TextView(getActivity());
-            mDots[i].setText(Html.fromHtml("&#8226;"));
-            if (i ==position)
-                mDots[i].setTextSize(45);
-            else
-                mDots[i].setTextSize(35);
-            mDots[i].setTextColor(getActivity().getResources().getColor(R.color.colorPrimary));
-            mDots[i].setGravity(Gravity.CENTER);
-            linearLayout.addView(mDots[i]);
-            linearLayout.setGravity(Gravity.CENTER);
-
+    private void resolveData(List<EMedia> eMedia) {
+        for (int i = 0; i < eMedia.size(); i++) {
+            VideoModel videoModel = new VideoModel(eMedia.get(i));
+            dataList.add(videoModel);
         }
+        if (recyclerBaseAdapter != null)
+            recyclerBaseAdapter.notifyDataSetChanged();
     }
-
 
     @Override
     public void onStop() {
         super.onStop();
-        mediaRecyclerView.stopVideos();
+
+        GSYVideoManager.onPause();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        GSYVideoManager.onResume(false);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        GSYVideoManager.releaseAllVideos();
+    }
+
+
 }
