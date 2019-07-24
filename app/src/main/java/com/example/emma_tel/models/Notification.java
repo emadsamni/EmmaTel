@@ -3,6 +3,7 @@ package com.example.emma_tel.models;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Notification  implements Serializable {
 
@@ -16,9 +17,9 @@ public class Notification  implements Serializable {
 
     @SerializedName("created_at")
     private
-    String created_at;
+    Date created_at;
 
-    public String getCreated_at() {
+    public Date getCreated_at() {
         return created_at;
     }
 

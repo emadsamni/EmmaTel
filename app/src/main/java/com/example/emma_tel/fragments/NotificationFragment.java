@@ -16,7 +16,12 @@ import com.example.emma_tel.adapters.NotificatonAdapter;
 import com.example.emma_tel.models.Notification;
 import com.example.emma_tel.viewmodels.DataViewModels;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class NotificationFragment  extends Fragment {
 
@@ -38,7 +43,19 @@ public class NotificationFragment  extends Fragment {
         dataViewModels.getNotificationList(getActivity()).observe(getActivity(), new Observer<List<Notification>>() {
             @Override
             public void onChanged(@Nullable List<Notification> notifications) {
-                mAdapter =new NotificatonAdapter(notifications,getActivity());
+
+                List<Notification> notifications1 =new ArrayList<>();
+                Date today = new Date();
+                for (int i=0;i<notifications.size();i++) {
+
+                    long difference = today.getTime() - notifications.get(i).getCreated_at().getTime();
+                   float daysBetween = (difference / (1000 * 60 * 60 * 24));
+                    if (daysBetween < 7) {
+                        notifications1.add(notifications.get(i));
+                    }
+
+                }
+                mAdapter =new NotificatonAdapter(notifications1,getActivity());
                 myRecyclerView.setAdapter(mAdapter);
                 LinearLayoutManager layoutManager =new LinearLayoutManager( getActivity());
                 layoutManager.setOrientation(LinearLayoutManager.VERTICAL);

@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
                 break;
             case R.id.profile_id:
                 if (!customerUtils.isFound(Constants.PREF_TOKEN)) {
-                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    startActivity(new Intent(MainActivity.this, RegisterActivity.class));
                 }
                 else
                 {

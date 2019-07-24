@@ -46,7 +46,7 @@
     <string name="profile">Profile</string>
     <string name="welcome">Welcome</string>
     <string name="deails">Details</string>
-    <string name="signup_desc">Enter the flollowing details to sinup up</string>
+    <string name="signup_desc">Enter phone number</string>
     <string name="signin">SignIn</string>
     <string name="address">العنوان :</string>
     <string name="phonemap">الهاتف :</string>
@@ -74,4 +74,7 @@
     <string name="select_mobile">Select Mobile</string>
     <string name="no_tips">Sorry ,  There are no tips for this device</string>
     <string name="sp">S.P</string>
+    <string name="sin_up">SignIn</string>
+    <string name="verfiy">Verify</string>
+    <string name="finish">Finish</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.emma_tel.fragments;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,11 +18,13 @@ import android.text.Html;
 import android.transition.Explode;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.allattentionhere.autoplayvideos.AAH_CustomRecyclerView;
 
@@ -149,7 +152,7 @@ public class HomeFragment extends Fragment {
 
         videoList.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-            int firstVisibleItem, lastVisibleItem;
+            int firstVisibleItem, lastVisibleItem, betItem;
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -159,8 +162,19 @@ public class HomeFragment extends Fragment {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+
+
                 firstVisibleItem   = linearLayoutManager.findFirstVisibleItemPosition();
                 lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+                 if (lastVisibleItem -firstVisibleItem ==1 )
+                 {
+                     betItem=-1;
+                 }
+                 else {
+                     betItem =(lastVisibleItem+firstVisibleItem)/2;
+                 }
+
+
                 //大于0说明有播放
                 if (GSYVideoManager.instance().getPlayPosition() >= 0) {
                     //当前播放的位置
@@ -174,15 +188,46 @@ public class HomeFragment extends Fragment {
                         if(!GSYVideoManager.isFullState(getActivity())) {
                             GSYVideoManager.releaseAllVideos();
                             recyclerNormalAdapter.notifyDataSetChanged();
+
                         }
                     }
                 }
+
+                int position = GSYVideoManager.instance().getPlayPosition();
+
+                if (firstVisibleItem != position) {
+                    if (lastVisibleItem - firstVisibleItem == 1)
+                        recyclerNormalAdapter.runVedio(firstVisibleItem);
+
+                }
+                else {
+                    if (betItem!=-1)
+                    {
+                        if(betItem!=position)
+                           recyclerNormalAdapter.runVedio(betItem);
+                    }
+                }
+
+
+
             }
         });
 
 
     }
 
+
+    public static int getVisiblePercent(View v) {
+        if (v.isShown()) {
+            Rect r = new Rect();
+            v.getGlobalVisibleRect(r);
+            double sVisible = r.width() * r.height();
+            double sTotal = v.getWidth() * v.getHeight();
+            return (int) (100 * sVisible / sTotal);
+        } else {
+            return -1;
+        }
+    }
     private void resolveData(List<EMedia> eMedia) {
         for (int i = 0; i < eMedia.size(); i++) {
             VideoModel videoModel = new VideoModel(eMedia.get(i));

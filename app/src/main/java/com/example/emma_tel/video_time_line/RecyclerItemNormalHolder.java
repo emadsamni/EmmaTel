@@ -72,7 +72,6 @@ public class RecyclerItemNormalHolder  extends RecyclerItemBaseHolder {
                 .setVideoTitle(title)
                 .setCacheWithPlay(false)
                 .setRotateViewAuto(true)
-
                 .setPlayTag(TAG)
                 .setMapHeadData(header)
                 .setShowFullAnimation(true)
@@ -112,8 +111,8 @@ public class RecyclerItemNormalHolder  extends RecyclerItemBaseHolder {
 
         //设置返回键
         gsyVideoPlayer.getBackButton().setVisibility(View.GONE);
-        if (position==0)
-          gsyVideoPlayer.startPlayLogic();
+       // if (position==0)
+         // gsyVideoPlayer.startPlayLogic();
 
         //设置全屏按键功能
         gsyVideoPlayer.getFullscreenButton().setOnClickListener(new View.OnClickListener() {
@@ -128,6 +127,10 @@ public class RecyclerItemNormalHolder  extends RecyclerItemBaseHolder {
     /**
      * 全屏幕按键处理
      */
+    public  void run()
+    {
+      // gsyVideoPlayer.startPlayLogic();
+    }
     private void resolveFullBtn(final StandardGSYVideoPlayer standardGSYVideoPlayer) {
         standardGSYVideoPlayer.startWindowFullscreen(context, true, true);
     }

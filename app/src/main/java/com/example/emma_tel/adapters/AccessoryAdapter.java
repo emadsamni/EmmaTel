@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.emma_tel.R;
@@ -54,6 +55,12 @@ public class AccessoryAdapter extends RecyclerView.Adapter<AccessoryAdapter.MyVi
                 onItemRecyclerClicked.onClickedRecyclerItem(current);
             }
         });
+        myViewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemRecyclerClicked.onClickedRecyclerItem(current);
+            }
+        });
     }
 
     @Override
@@ -63,10 +70,11 @@ public class AccessoryAdapter extends RecyclerView.Adapter<AccessoryAdapter.MyVi
 
     public class MyViewHolder extends  RecyclerView.ViewHolder {
         ImageView accessoryImage;
-        TextView accessoryTitle;;
+        TextView accessoryTitle;
         TextView accessoryPrice;
         TextView accessoryName;
         Button button;
+        LinearLayout linearLayout;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -76,6 +84,7 @@ public class AccessoryAdapter extends RecyclerView.Adapter<AccessoryAdapter.MyVi
             accessoryPrice   =(TextView) itemView.findViewById(R.id.text_view_accessory_price);
             accessoryName =(TextView) itemView.findViewById(R.id.accessory_name);
             button =(Button)itemView.findViewById(R.id.details_button);
+            linearLayout =(LinearLayout)itemView.findViewById(R.id.linearLayout);
 
         }
     }

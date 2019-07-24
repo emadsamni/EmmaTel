@@ -45,20 +45,7 @@ public class NotificatonAdapter extends RecyclerView.Adapter<NotificatonAdapter.
         Notification current= data.get(i);
         myViewHolder.content.setText(current.getContent());
         if (current.getCreated_at()!= null) {
-
-            DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
-            Date date = null;
-            try {
-                date = (Date) formatter.parse(current.getCreated_at());
-                SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-                Date date2 = new Date(date.getTime());
-                System.out.println(sf.format(date2));
-                myViewHolder.date.setText(date2+"");
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-
+            myViewHolder.date.setText(current.getCreated_at()+"");
         }
 
     }

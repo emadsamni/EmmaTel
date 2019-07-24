@@ -68,14 +68,14 @@ public class RegisterActivity extends AppCompatActivity {
         RegisterFragment fragment = new RegisterFragment();
         loadFragment(fragment);
         updateIndicators(page);
-        titleTextView.setText("SignUp");
-        if (customerUtils.isFound(Constants.PREF_LANG)) {
+        titleTextView.setText(getResources().getString(R.string.sin_up));
+       /* if (customerUtils.isFound(Constants.PREF_LANG)) {
             if (customerUtils.getString(Constants.PREF_LANG).equals("ar")) {
                 mNextBtn.setRotation(180);
                 mSkipBtn.setRotation(0);
 
             }
-        }
+        }*/
 
     }
     private  void assignAction()
@@ -96,19 +96,19 @@ public class RegisterActivity extends AppCompatActivity {
                         RegisterFragment fragment1 = new RegisterFragment();
                         loadFragment(fragment1);
                         updateIndicators(page);
-                        titleTextView.setText("SignUp");
+                        titleTextView.setText(getResources().getString(R.string.sin_up));
                         return;
                     case 1:
                         VerificationFragment fragment2 = new VerificationFragment();
                         loadFragment(fragment2);
                         updateIndicators(page);
-                        titleTextView.setText("Verify");
+                        titleTextView.setText(getResources().getString(R.string.verfiy));
                         return;
                     case 2:
                         FinishFragment fragment3 = new FinishFragment();
                         loadFragment(fragment3);
                         updateIndicators(page);
-                        titleTextView.setText("Finish");
+                        titleTextView.setText(getResources().getString(R.string.finish));
                         return;
 
                 }
@@ -136,19 +136,19 @@ public class RegisterActivity extends AppCompatActivity {
                 RegisterFragment fragment1 = new RegisterFragment();
                 loadFragment(fragment1);
                 updateIndicators(page);
-                titleTextView.setText("SignUp");
+                titleTextView.setText(getResources().getString(R.string.sin_up));
                 return;
             case 1:
                 VerificationFragment fragment2 = new VerificationFragment();
                 loadFragment(fragment2);
                 updateIndicators(page);
-                titleTextView.setText("Verify");
+                titleTextView.setText(getResources().getString(R.string.verfiy));
                 return;
             case 2:
                 FinishFragment fragment3 = new FinishFragment();
                 loadFragment(fragment3);
                 updateIndicators(page);
-                titleTextView.setText("Finish");
+                titleTextView.setText(getResources().getString(R.string.finish));
                 return;
         }
     }

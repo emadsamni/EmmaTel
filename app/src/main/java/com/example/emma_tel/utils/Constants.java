@@ -6,6 +6,7 @@ public class Constants {
     public static final String APP_SHARED_PREFERENCE_KEY = "pref";
     public static final String PREF_TOKEN = "token";
     public static final String PREF_Name ="name";
+    public static final String PREF_TIM = "timer";
     public static final String PREF_Phone ="phone";
     public static final String PREF_LANG ="lang";
     public static final String PREF_APP_KEY ="encrypt_key";

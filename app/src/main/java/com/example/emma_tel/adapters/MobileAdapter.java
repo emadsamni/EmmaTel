@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.emma_tel.R;
@@ -54,6 +55,12 @@ public class MobileAdapter extends RecyclerView.Adapter<MobileAdapter.MyViewHold
                 onItemRecyclerClicked.onClickedRecyclerItem(current);
             }
         });
+        myViewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemRecyclerClicked.onClickedRecyclerItem(current);
+            }
+        });
 
     }
     @Override
@@ -69,6 +76,7 @@ public class MobileAdapter extends RecyclerView.Adapter<MobileAdapter.MyViewHold
         TextView mobileName;
         Button button;
         OptRoundCardView roundCardView;
+        LinearLayout linearLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mobileImage = (ImageView) itemView.findViewById(R.id.image_view_Mobile_image);
@@ -77,6 +85,7 @@ public class MobileAdapter extends RecyclerView.Adapter<MobileAdapter.MyViewHold
             mobileName = (TextView) itemView.findViewById(R.id.mobile_name);
             button =(Button)itemView.findViewById(R.id.details_button);
             roundCardView =(OptRoundCardView)itemView.findViewById(R.id.card_view);
+            linearLayout =(LinearLayout)itemView.findViewById(R.id.linearLayout);
 
 
         }

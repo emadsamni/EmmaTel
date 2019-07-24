@@ -21,6 +21,9 @@ import com.example.emma_tel.models.User;
 import com.example.emma_tel.utils.Constants;
 import com.example.emma_tel.utils.ProgressDialog;
 import com.example.emma_tel.utils.Utils;
+
+import java.util.Date;
+
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -53,6 +56,8 @@ public class LoginRepository {
                  ProgressDialog.getInstance().cancel();
                 ((RegisterActivity) context).setPhone(phone);
                 ((RegisterActivity) context).next();
+                Date date = new Date(System.currentTimeMillis());
+                CustomerUtils.getInstance(context).addLong(Constants.PREF_TIM,date.getTime());
             }
             @Override
             public void onFailure(Call<ApiResponse<User>> call, Throwable t) {

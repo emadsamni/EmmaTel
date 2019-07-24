@@ -19,7 +19,7 @@ import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class WelcomeActivity extends AppCompatActivity {
     private static final String TAG ="main" ;
-    private static int TIME_OUT = 1000;
+    private static int TIME_OUT = 1500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
