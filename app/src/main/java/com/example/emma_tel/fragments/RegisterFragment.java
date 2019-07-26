@@ -2,6 +2,7 @@ package com.example.emma_tel.fragments;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -18,12 +19,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.emma_tel.R;
+import com.example.emma_tel.activites.LoginActivity;
 import com.example.emma_tel.activites.StepperListener;
 import com.example.emma_tel.helprs.CustomerUtils;
 import com.example.emma_tel.utils.Constants;
 import com.example.emma_tel.utils.Utils;
 import com.example.emma_tel.viewmodels.LoginViewModel;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,6 +63,7 @@ public class RegisterFragment extends Fragment  implements StepperListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_register, container,false);
          assignUIReference(view);
+         initFacebookLogin(view);
 
         return  view;
 
@@ -93,7 +107,13 @@ public class RegisterFragment extends Fragment  implements StepperListener {
     public void onNextClicked() {
         if (!checkTimer) {
             if (isInputValidation()) {
-                register(phoneText.getText().toString(), passwordText.getText().toString());
+                 String phone ;
+                 phone =phoneText.getText().toString();
+                 if (phone.length() ==9)
+                 {
+                     phone ="0"+phone;
+                 }
+                register(phone, passwordText.getText().toString());
             }
         } else {
             Toast.makeText(getActivity(), "Wating timer", Toast.LENGTH_SHORT).show();
@@ -157,6 +177,7 @@ public class RegisterFragment extends Fragment  implements StepperListener {
         Matcher matcher = pattern.matcher(inputString);
         if (matcher.matches())
         {
+
             return true;
         }
         else{
@@ -193,5 +214,60 @@ public class RegisterFragment extends Fragment  implements StepperListener {
             }
 
         }
+    }
+
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
+    private void initFacebookLogin(View container) {
+        // LoginManager.getInstance().logOut();
+
+        loginButton = container.findViewById(R.id.login_button);
+        loginButton.setReadPermissions(Arrays.asList("public_profile", "email"));
+        loginButton.setFragment(this);
+
+        callbackManager = CallbackManager.Factory.create();
+
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                Log.v("LoginActivity", response.toString());
+
+                                // Application code
+                                try {
+                                    String email = object.getString("email");
+                                    String name = object.getString("name");
+                                    loginViewModel.addFacebookUser(getActivity() ,loginResult.getAccessToken().getUserId() ,name,email);
+
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,birthday");
+                request.setParameters(parameters);
+                request.executeAsync();
+            }
+            @Override
+            public void onCancel() {
+            }
+            @Override
+            public void onError(FacebookException exception) {
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

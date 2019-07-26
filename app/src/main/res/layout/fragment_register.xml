@@ -37,20 +37,40 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_marginTop="20dp">
-                        <EditText
-
-                            android:id="@+id/phone"
-                            android:background="@drawable/border_textview"
-                            android:paddingStart="30dp"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="20dp"
-                            android:hint="@string/phone_number"
-                            android:inputType="number"
-                            android:textSize="8pt"
-                         />
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            >
+                            <EditText
+                                android:background="@drawable/border_textview"
+                                android:paddingStart="20dp"
+                                android:paddingEnd="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:hint="@string/phone_number"
+                                android:inputType="number"
+                                android:textSize="8pt"
+                                android:enabled="false"
+                                android:text="00963"/>
+                            <EditText
+
+                                android:id="@+id/phone"
+                                android:background="@drawable/border_textview"
+                                android:paddingStart="30dp"
+                                android:paddingEnd="30dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="20dp"
+                                android:hint="@string/phone_number"
+                                android:inputType="number"
+                                android:textSize="8pt"
+                                />
+                        </LinearLayout>
                         <TextView
                             android:id="@+id/phone_error"
                             android:layout_width="wrap_content"
@@ -61,6 +81,25 @@
                             />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/dots"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_alignParentBottom="true"
+
+                    >
+                    <com.facebook.login.widget.LoginButton
+                        android:id="@+id/login_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        />
+                </LinearLayout>
+
 
 
                 <LinearLayout

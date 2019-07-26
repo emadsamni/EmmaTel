@@ -76,6 +76,7 @@ public class RecyclerItemNormalHolder  extends RecyclerItemBaseHolder {
                 .setMapHeadData(header)
                 .setShowFullAnimation(true)
                  .setNeedLockFull(false)
+                .setNeedShowWifiTip(false)
                 .setPlayPosition(position)
                 .setVideoAllCallBack(new GSYSampleCallBack() {
                     @Override
@@ -129,7 +130,7 @@ public class RecyclerItemNormalHolder  extends RecyclerItemBaseHolder {
      */
     public  void run()
     {
-      // gsyVideoPlayer.startPlayLogic();
+       //gsyVideoPlayer.startPlayLogic();
     }
     private void resolveFullBtn(final StandardGSYVideoPlayer standardGSYVideoPlayer) {
         standardGSYVideoPlayer.startWindowFullscreen(context, true, true);

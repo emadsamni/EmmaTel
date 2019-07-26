@@ -74,7 +74,7 @@
     <string name="select_mobile">Select Mobile</string>
     <string name="no_tips">Sorry ,  There are no tips for this device</string>
     <string name="sp">S.P</string>
-    <string name="sin_up">SignIn</string>
+    <string name="sin_up">Sign In</string>
     <string name="verfiy">Verify</string>
     <string name="finish">Finish</string>
 </resources>
